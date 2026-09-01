@@ -41,14 +41,80 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  background: #FFFFFF;
+  overflow-x: clip; /* transformed 3D extras (module) must never create page-level h-scroll */
 }
 
 body {
   margin: 0;
-  background: #FFFFFF;
+  background: transparent; /* the fixed .bg layer shows through */
   color: var(--ink);
   font: 400 16px/1.55 var(--font-ui);
   overflow-x: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   Ambient background — faint neural strands + drifting colour washes,
+   echoing the daignostics.info hero. Lives OUTSIDE the 3D scene tree,
+   so blur/opacity here can never flatten the stack.
+   -------------------------------------------------------------------------- */
+
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bg-blob {
+  position: absolute;
+  width: 55vmax;
+  height: 55vmax;
+  border-radius: 50%;
+  filter: blur(70px);
+  will-change: transform;
+}
+
+.bg-blob--red {
+  top: -18vmax;
+  right: -12vmax;
+  background: radial-gradient(circle at 40% 40%, rgba(226, 30, 58, .07), transparent 65%);
+  animation: blobDrift 46s ease-in-out infinite alternate;
+}
+
+.bg-blob--blue {
+  bottom: -20vmax;
+  left: -14vmax;
+  background: radial-gradient(circle at 55% 45%, rgba(36, 103, 224, .07), transparent 65%);
+  animation: blobDrift 58s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes blobDrift {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(-6vmax, 4vmax, 0) scale(1.12); }
+}
+
+.bg-net {
+  position: absolute;
+  inset: -6%;
+  width: 112%;
+  height: 112%;
+  will-change: transform;
+}
+
+/* the SVG roots animate (compositor-friendly), never their inner <g> */
+.bg-net--a { animation: netDrift 70s ease-in-out infinite alternate; }
+.bg-net--b { animation: netDrift 90s ease-in-out infinite alternate-reverse; }
+
+@keyframes netDrift {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-38px, 22px, 0); }
+}
+
+body.page-hidden .bg-blob,
+body.page-hidden .bg-net {
+  animation-play-state: paused;
 }
 
 img { max-width: 100%; height: auto; }
@@ -132,6 +198,229 @@ img { max-width: 100%; height: auto; }
 
 .brand { display: inline-flex; align-items: center; }
 .brand-logo { height: 36px; width: auto; display: block; }
+
+/* --------------------------------------------------------------------------
+   Main navigation (dropdowns on hover/focus-within; plain links < 720px)
+   -------------------------------------------------------------------------- */
+
+.main-nav { flex: 1 1 auto; }
+
+.main-nav > ul {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.main-nav > ul > li { position: relative; }
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font: 600 15px/1 var(--font-ui);
+  color: var(--ink);
+  text-decoration: none;
+  transition: background-color .15s, color .15s;
+}
+
+.nav-link:hover { background: var(--bg-soft); color: var(--red); }
+.nav-link[aria-current="page"] { color: var(--red); }
+
+.nav-link .nav-chev {
+  width: 12px;
+  height: 12px;
+  color: var(--ink-faint);
+  transition: transform .18s;
+}
+
+.has-dd:hover .nav-chev,
+.has-dd:focus-within .nav-chev { transform: rotate(180deg); }
+
+.dd {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  min-width: 320px;
+  margin: 0;
+  padding: 8px;
+  list-style: none;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 16px 40px rgba(48, 45, 45, .13);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: opacity .18s, transform .18s, visibility 0s .18s;
+  z-index: 30;
+}
+
+.has-dd:hover .dd,
+.has-dd:focus-within .dd {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity .18s, transform .18s, visibility 0s;
+}
+
+.dd a {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font: 500 14px/1.4 var(--font-ui);
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+
+.dd a:hover { background: var(--bg-soft); color: var(--ink); }
+.dd .dd-all { border-top: 1px dashed var(--line); margin-top: 6px; padding-top: 10px; color: var(--red-dark); font-weight: 600; }
+
+@media (max-width: 719.98px) {
+  .dd { display: none; }
+  .nav-link { padding: 10px 10px; font-size: 14px; }
+  .nav-link .nav-chev { display: none; }
+  .head-row > .btn { display: none; } /* nav wins the narrow header; CTA stays in page */
+}
+
+/* --------------------------------------------------------------------------
+   Subpages: Rješenja / Primjene
+   -------------------------------------------------------------------------- */
+
+.subhero { padding-block: 64px 20px; }
+
+.page-sections {
+  max-width: 880px;
+  margin-inline: auto;
+  padding-bottom: 24px;
+}
+
+.sol {
+  border-top: 1px solid var(--line);
+  padding: 46px 0 40px;
+  scroll-margin-top: 24px;
+}
+.sol:first-of-type { border-top: 0; padding-top: 28px; }
+
+.sol-kicker {
+  font: 600 12px/1 var(--font-ui);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--red-dark);
+  margin: 0 0 10px;
+}
+
+.sol-title {
+  margin: 0 0 14px;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(24px, 3vw, 32px);
+  line-height: 1.15;
+  color: var(--ink);
+}
+
+.layer-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 18px;
+  padding: 0;
+  list-style: none;
+}
+
+.lb {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: #fff;
+  font: 600 11.5px/1 var(--font-ui);
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+.lb i {
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  transform: rotate(45deg);
+}
+.lb-clarity i { background: #FFFFFF; border: 1px solid #C9C4C1; }
+.lb-inference i { background: #2467E0; }
+.lb-datahub i { background: #4A4747; }
+.lb-edge i { background: #16233F; }
+
+.sol-desc {
+  margin: 0 0 16px;
+  font-size: 16.5px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.sol p strong { color: var(--ink); }
+
+.points {
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 0;
+}
+
+.points li {
+  position: relative;
+  padding: 6px 0 6px 22px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+.points li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: .85em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--red);
+}
+
+.sol-note {
+  margin: 18px 0 0;
+  font-size: 13px;
+  color: var(--ink-mute);
+}
+
+.status-chip {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--bg-soft);
+  font: 600 11.5px/1.6 var(--font-ui);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-right: 8px;
+  vertical-align: 1px;
+}
+
+.uc-block { margin: 0 0 14px; }
+.uc-block .uc-label {
+  font: 600 12px/1 var(--font-ui);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--red-dark);
+  display: block;
+  margin-bottom: 6px;
+}
+.uc-block p { margin: 0; color: var(--ink-soft); line-height: 1.6; }
 
 /* --------------------------------------------------------------------------
    Hero
@@ -312,6 +601,10 @@ img { max-width: 100%; height: auto; }
   position: absolute;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  /* transparent outline keeps polygon edges antialiased while the layer is
+     composited during transform animations (Chrome renders hard 3D edges
+     jagged without an alpha margin in the rasterized texture) */
+  outline: 1px solid transparent;
 }
 
 .face--top {
@@ -335,6 +628,7 @@ img { max-width: 100%; height: auto; }
   text-align: center;
   padding: 0 12px calc(var(--slab) * 0.05);
   white-space: nowrap;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* small brand mark on the top slab, like the reference diagram */
@@ -350,24 +644,24 @@ img { max-width: 100%; height: auto; }
 
 .face--south {
   left: 0; right: 0;
-  top: calc(100% - .5px);
+  top: calc(100% - 1px);
   height: var(--thick);
   transform-origin: top;
   transform: rotateX(-90deg);
   background: var(--c-s);
   border-radius: 0 0 3px 3px;
-  transition: background-color .3s;
+  transition: background-color .3s, box-shadow .3s;
 }
 
 .face--east {
   top: 0; bottom: 0;
-  left: calc(100% - .5px);
+  left: calc(100% - 1px);
   width: var(--thick);
   transform-origin: left;
   transform: rotateY(90deg);
   background: var(--c-e);
   border-radius: 0 3px 3px 0;
-  transition: background-color .3s;
+  transition: background-color .3s, box-shadow .3s;
 }
 
 /* Per-layer face colors: rest / dimmed / active-bright, all precomputed hex */
@@ -385,7 +679,7 @@ img { max-width: 100%; height: auto; }
 .slab-pos[data-id="inference"] {
   --c-top: #2467E0; --c-s: #1B4FB3; --c-e: #153F92;
   --c-top-dim: #4D74BC; --c-s-dim: #4766A1; --c-e-dim: #44588D;
-  --c-top-hi: #2E74F0;
+  --c-top-hi: #2A6BE8; /* white label keeps >=4.5:1 while active */
   --label: #FFFFFF; --label-dim: #FFFFFF;
 }
 
@@ -403,15 +697,285 @@ img { max-width: 100%; height: auto; }
   --label: #FFFFFF; --label-dim: #FFFFFF;
 }
 
+/* --------------------------------------------------------------------------
+   Top-face detailing (in-plane, decorative) — insets, ports, vents, pads
+   -------------------------------------------------------------------------- */
+
+.detail {
+  position: absolute;
+  pointer-events: none;
+}
+
+/* dAI Clarity: bevelled tray with a recessed panel and two card slots */
+.slab-pos[data-id="clarity"] .d-frame {
+  inset: 6%;
+  border-radius: 9% / 9%;
+  border: 2px solid #E8E4E1;
+  background: #FDFCFB;
+  box-shadow: inset 0 0 0 1px #F3F0EE;
+}
+.slab-pos[data-id="clarity"] .d-screen {
+  inset: 13%;
+  border-radius: 7% / 7%;
+  background: #F4F1EF;
+  box-shadow: inset 1.5px 1.5px 5px rgba(48, 45, 45, .10), inset -1px -1px 2px #FFFFFF;
+}
+.slab-pos[data-id="clarity"] .d-slot {
+  right: 17%;
+  width: 15%;
+  height: 4%;
+  border-radius: 3px;
+  background: #E7E3E0;
+  box-shadow: inset 0 1px 2px rgba(48, 45, 45, .18);
+}
+.slab-pos[data-id="clarity"] .d-slot-1 { top: 19%; }
+.slab-pos[data-id="clarity"] .d-slot-2 { top: 26%; }
+
+/* dAI Inference Engine: raised compute block, traces, docking port */
+.slab-pos[data-id="inference"] .d-chip {
+  left: 16%;
+  top: 20%;
+  width: 22%;
+  height: 22%;
+  border-radius: 8%;
+  background: linear-gradient(135deg, #3B7CF2, #1E56C4);
+  box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .22),
+              3px 3px 0 #16418F,
+              inset -2px -2px 4px rgba(0, 0, 0, .18);
+}
+.slab-pos[data-id="inference"] .d-trace {
+  height: 2px;
+  background: rgba(255, 255, 255, .30);
+  border-radius: 1px;
+}
+.slab-pos[data-id="inference"] .d-trace-1 { left: 40%; top: 30%; width: 42%; }
+.slab-pos[data-id="inference"] .d-trace-2 { left: 46%; top: 37%; width: 36%; }
+.slab-pos[data-id="inference"] .d-port {
+  right: 4%;
+  top: 24%;
+  width: 7%;
+  height: 22%;
+  border-radius: 3px;
+  background: #163F92;
+  box-shadow: inset 0 0 0 1.5px #0F3070, inset 0 2px 4px rgba(0, 0, 0, .35);
+}
+
+/* dAI DataHub: recessed storage bay with vents and corner mounts */
+.slab-pos[data-id="datahub"] .d-panel {
+  inset: 17%;
+  border-radius: 6%;
+  background: #413E3E;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, .38), inset 0 0 0 1px #4E4A4A;
+}
+.slab-pos[data-id="datahub"] .d-vent {
+  left: 28%;
+  width: 44%;
+  height: 3.5%;
+  border-radius: 2px;
+  background: #2C2929;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, .5);
+}
+.slab-pos[data-id="datahub"] .d-vent-1 { top: 30%; }
+.slab-pos[data-id="datahub"] .d-vent-2 { top: 38%; }
+.slab-pos[data-id="datahub"] .d-vent-3 { top: 46%; }
+.slab-pos[data-id="datahub"] .d-pad {
+  width: 8%;
+  height: 8%;
+  border-radius: 2px;
+  background: #5A5656;
+  box-shadow: inset 0 0 0 1px #676262, inset 0 -2px 3px rgba(0, 0, 0, .3);
+}
+
+/* dAI Edge: mounting pads (posts rise from here), vent, status LED */
+.slab-pos[data-id="edge"] .d-pad {
+  width: 8%;
+  height: 8%;
+  border-radius: 2px;
+  background: #24304E;
+  box-shadow: inset 0 0 0 1px #2E3C5E, inset 0 -2px 3px rgba(0, 0, 0, .4);
+}
+.d-pad-nw { left: 4%; top: 4%; }
+.d-pad-ne { right: 4%; top: 4%; }
+.d-pad-sw { left: 4%; bottom: 4%; }
+.d-pad-se { right: 4%; bottom: 4%; }
+.slab-pos[data-id="edge"] .d-vent-wide {
+  left: 30%;
+  right: 30%;
+  top: 34%;
+  height: 6%;
+  border-radius: 3px;
+  background: #0C1526;
+  box-shadow: inset 0 2px 3px rgba(0, 0, 0, .5);
+}
+.slab-pos[data-id="edge"] .d-led {
+  right: 13%;
+  top: 15%;
+  width: 3.5%;
+  height: 3.5%;
+  border-radius: 50%;
+  background: #E21E3A;
+  box-shadow: 0 0 7px rgba(226, 30, 58, .85);
+  animation: ledPulse 2.6s ease-in-out infinite;
+}
+
+@keyframes ledPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .35; }
+}
+
+/* Corner posts: small cuboids rising from Edge toward DataHub */
+
+.post {
+  position: absolute;
+  width: 7%;
+  height: 7%;
+  transform-style: preserve-3d;
+  pointer-events: none;
+  /* capped so the lifted (+20px) posts can never pierce DataHub's top plane on small slabs */
+  --post-h: min(calc(var(--gap) - var(--thick) * 1.1), calc(var(--gap) - var(--lift) - 2px));
+}
+.post-nw { left: 4.5%; top: 4.5%; }
+.post-ne { right: 4.5%; top: 4.5%; }
+.post-sw { left: 4.5%; bottom: 4.5%; }
+.post-se { right: 4.5%; bottom: 4.5%; }
+
+.post i {
+  position: absolute;
+  display: block;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  outline: 1px solid transparent;
+}
+.post .post-s {
+  left: -1px; right: -1px; bottom: 0; /* 1px overrun tucks behind the east wall at the shared corner */
+  height: var(--post-h);
+  transform-origin: bottom;
+  transform: rotateX(-90deg);
+  background: #2A3550;
+}
+.post .post-e {
+  top: 0; bottom: 0; right: 0;
+  width: var(--post-h);
+  transform-origin: right;
+  transform: rotateY(90deg);
+  background: #1F2940;
+}
+.post .post-cap {
+  inset: 0;
+  transform: translateZ(calc(var(--post-h) - 1px)); /* 1px below wall tops: no hairline seam */
+  background: #3A4664;
+}
+
+/* "Zamjenjivi AI Model" — detachable module docked beside the Inference layer */
+
+.module {
+  position: absolute;
+  left: 106%;
+  top: 38%;
+  width: 30%;
+  height: 24%;
+  transform-style: preserve-3d;
+  pointer-events: none;
+  transition: transform 400ms var(--ease-spring);
+  --mthick: calc(var(--thick) * 0.75);
+}
+
+.slab-pos.on .module { transform: translateX(-18%); } /* docks into the port */
+
+.m-face {
+  position: absolute;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  outline: 1px solid transparent;
+}
+.m-top {
+  inset: 0;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #363D4C, #262B36);
+  box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.m-label {
+  font: 600 max(8px, calc(var(--slab) * 0.036))/1.25 var(--font-ui);
+  letter-spacing: .02em;
+  color: #FFFFFF;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.m-south {
+  left: 0; right: 0;
+  top: calc(100% - 1px);
+  height: var(--mthick);
+  transform-origin: top;
+  transform: rotateX(-90deg);
+  background: #1E232C;
+}
+.m-east {
+  top: 0; bottom: 0;
+  left: calc(100% - 1px);
+  width: var(--mthick);
+  transform-origin: left;
+  transform: rotateY(90deg);
+  background: #171B22;
+}
+
 /* Active / dimmed states (driven by .on + .has-active set from JS) */
 
 .slab-pos.on .slab-lift { transform: translateZ(var(--lift)); }
 .slab-pos.on .face--top { background: var(--c-top-hi); }
 
+/* Red aura around the active layer. The glow lives on always-present ::after
+   pseudo-elements with STATIC multi-layer shadows; only their opacity tweens,
+   so activation never re-rasterizes blurred shadows frame by frame. */
+.face::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity .3s;
+  pointer-events: none;
+}
+.face--top::after {
+  box-shadow: inset 0 0 0 2px rgba(226, 30, 58, .55),
+              0 0 0 2.5px rgba(226, 30, 58, .35),
+              0 0 26px 6px rgba(226, 30, 58, .34),
+              0 0 52px 18px rgba(226, 30, 58, .18);
+}
+.face--south::after,
+.face--east::after {
+  box-shadow: 0 0 0 1.5px rgba(226, 30, 58, .30),
+              0 0 26px 7px rgba(226, 30, 58, .30);
+}
+.slab-pos.on .face::after { opacity: 1; }
+
 .stack-viz.has-active .slab-pos:not(.on) .face--top { background: var(--c-top-dim); }
 .stack-viz.has-active .slab-pos:not(.on) .face--south { background: var(--c-s-dim); }
 .stack-viz.has-active .slab-pos:not(.on) .face--east { background: var(--c-e-dim); }
 .stack-viz.has-active .slab-pos:not(.on) .slab-label { color: var(--label-dim); }
+
+/* Decorations follow their layer into the dim state (leaf elements only —
+   never opacity on .module/.post themselves, they are preserve-3d groups) */
+.stack-viz.has-active .slab-pos:not(.on) .detail { opacity: .45; }
+.stack-viz.has-active .slab-pos:not(.on) .m-top { background: #575D69; }
+.stack-viz.has-active .slab-pos:not(.on) .m-south { background: #4A4F59; }
+.stack-viz.has-active .slab-pos:not(.on) .m-east { background: #42464F; }
+.stack-viz.has-active .slab-pos:not(.on) .m-label { color: rgba(255, 255, 255, .85); }
+.stack-viz.has-active .slab-pos:not(.on) .post-s { background: #4A5570; }
+.stack-viz.has-active .slab-pos:not(.on) .post-e { background: #414B63; }
+.stack-viz.has-active .slab-pos:not(.on) .post-cap { background: #566180; }
+.stack-viz.has-active .slab-pos[data-id="edge"]:not(.on) .d-led {
+  animation-play-state: paused;
+  opacity: .35;
+  box-shadow: none;
+}
+
+.detail { transition: opacity .3s; }
+.m-face { transition: background-color .3s; }
+.post i { transition: background-color .3s; }
 
 /* Block interaction until the entrance settles (overlapping mid-flight slabs) */
 .stack-viz:not(.is-settled) .scene { pointer-events: none; }
@@ -421,7 +985,9 @@ img { max-width: 100%; height: auto; }
    -------------------------------------------------------------------------- */
 
 html.js .stack-viz:not(.is-in) .slab-lift { transform: translateZ(var(--entrance-z)); }
-html.js .stack-viz:not(.is-in) .face { opacity: 0; }
+html.js .stack-viz:not(.is-in) .face,
+html.js .stack-viz:not(.is-in) .m-face,
+html.js .stack-viz:not(.is-in) .post i { opacity: 0; }
 html.js .stack-viz:not(.is-in) .ground-shadow { opacity: 0; transform: translateX(-50%) scaleX(.7); }
 html.js .stack-viz:not(.is-in) .card { opacity: 0; transform: translateX(24px); }
 html.js .stack-viz:not(.is-in) .leaders { opacity: 0; }
@@ -430,7 +996,9 @@ html.js .stack-viz:not(.is-in) .leaders { opacity: 0; }
   transition: transform 650ms var(--ease-out);
   transition-delay: calc(200ms + var(--i) * 120ms);
 }
-.stack-viz.is-in .face {
+.stack-viz.is-in .face,
+.stack-viz.is-in .m-face,
+.stack-viz.is-in .post i {
   transition: opacity 300ms linear, background-color .3s;
   transition-delay: calc(200ms + var(--i) * 120ms);
 }
@@ -453,7 +1021,9 @@ html.js .stack-viz:not(.is-in) .leaders { opacity: 0; }
   transition: transform 350ms var(--ease-spring);
   transition-delay: 0ms;
 }
-.stack-viz.is-settled .face {
+.stack-viz.is-settled .face,
+.stack-viz.is-settled .m-face,
+.stack-viz.is-settled .post i {
   transition: opacity .3s, background-color .3s, box-shadow .3s;
   transition-delay: 0ms;
 }
@@ -499,6 +1069,11 @@ body.page-hidden .slab-idle {
 .stack-viz.has-active .ground-shadow,
 .stack-viz.is-off .ground-shadow,
 body.page-hidden .ground-shadow {
+  animation-play-state: paused;
+}
+
+.stack-viz.is-off .d-led,
+body.page-hidden .d-led {
   animation-play-state: paused;
 }
 
@@ -798,7 +1373,9 @@ body.page-hidden .ground-shadow {
   }
 
   html.js .stack-viz:not(.is-in) .slab-lift { transform: none; }
-  html.js .stack-viz:not(.is-in) .face { opacity: 1; }
+  html.js .stack-viz:not(.is-in) .face,
+  html.js .stack-viz:not(.is-in) .m-face,
+  html.js .stack-viz:not(.is-in) .post i { opacity: 1; }
   html.js .stack-viz:not(.is-in) .ground-shadow { opacity: 1; transform: translateX(-50%); }
   html.js .stack-viz:not(.is-in) .card { opacity: 1; transform: none; }
   html.js .stack-viz:not(.is-in) .leaders { opacity: 1; }
@@ -808,9 +1385,14 @@ body.page-hidden .ground-shadow {
     animation: none;
   }
 
-  .slab-pos.on .slab-lift { transform: none; }
-  .slab-pos.on .face--top { box-shadow: inset 0 0 0 2px var(--red); }
-  .slab-pos[data-id="clarity"].on .face--top { box-shadow: inset 0 0 0 2px var(--red); }
+  .slab-pos.on .slab-lift { transform: none; } /* the red aura carries the active state instead */
+
+  .bg-blob, .bg-net--a, .bg-net--b,
+  .slab-pos[data-id="edge"] .d-led {
+    animation: none;
+  }
+  .module { transition: none; }
+  .face::after { transition: none; }
 
   .stack-viz.is-in .slab-lift,
   .stack-viz.is-in .face,

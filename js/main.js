@@ -168,12 +168,15 @@
   IDS.forEach(function (id) {
     var e = els[id];
 
-    e.slabBtn.addEventListener('pointerenter', function (ev) {
+    // listeners live on .slab-pos (not the button): the idle bob shifts the
+    // button a few px inside its static wrappers, and a pointer in that sliver
+    // must still count as being over the layer
+    e.pos.addEventListener('pointerenter', function (ev) {
       if (ev.pointerType !== 'mouse') return;
       if (slabUnderPoint(ev) !== id) { queueReconcile(); return; } // spurious enter
       hoverEnter(id);
     });
-    e.slabBtn.addEventListener('pointerleave', function (ev) {
+    e.pos.addEventListener('pointerleave', function (ev) {
       if (ev.pointerType !== 'mouse') return;
       var under = slabUnderPoint(ev);
       if (under === id) { queueReconcile(); return; } // spurious: pointer still over this slab
@@ -201,7 +204,9 @@
       hoverLeave();
     });
 
-    e.slabBtn.addEventListener('click', function () { togglePin(id, e.slabBtn); });
+    // click on .slab-pos catches the bob sliver too; button clicks (incl.
+    // keyboard Enter/Space) bubble here, so one handler covers both
+    e.pos.addEventListener('click', function () { togglePin(id, e.slabBtn); });
     e.toggle.addEventListener('click', function () { togglePin(id, e.toggle); });
   });
 

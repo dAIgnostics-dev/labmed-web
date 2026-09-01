@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Primjene — dAIgnostics</title>
+  <meta name="description" content="Primjene dAIgnostics platforme u praksi: radiološko izvještavanje, digitalna terapijska lista, automatski rasporedi liječnika, modernizacija patoloških arhiva i dijagnostika biosignala.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="bg" aria-hidden="true">
+  <span class="bg-blob bg-blob--red"></span>
+  <span class="bg-blob bg-blob--blue"></span>
+  <svg class="bg-net bg-net--a" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" focusable="false" aria-hidden="true">
+    <g stroke="#8FA3C4" fill="#8FA3C4">
+      <path d="M -100 180 C 300 80, 520 340, 860 260 S 1420 120, 1750 240" fill="none" stroke-width="1.4" opacity=".14"/>
+      <path d="M -80 620 C 260 700, 540 520, 900 610 S 1460 740, 1720 640" fill="none" stroke-width="1.2" opacity=".11"/>
+      <g opacity=".2">
+        <circle cx="298" cy="105" r="2.4"/><circle cx="560" cy="322" r="1.8"/><circle cx="866" cy="258" r="2.6"/>
+        <circle cx="1180" cy="170" r="1.7"/><circle cx="270" cy="676" r="2.1"/><circle cx="905" cy="612" r="2.5"/>
+      </g>
+    </g>
+  </svg>
+  <svg class="bg-net bg-net--b" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" focusable="false" aria-hidden="true">
+    <g stroke="#E5A9B4" fill="#E5A9B4">
+      <path d="M 1700 120 C 1320 260, 1080 140, 780 360 S 320 660, -80 560" fill="none" stroke-width="1.4" opacity=".13"/>
+      <g opacity=".18">
+        <circle cx="1324" cy="256" r="2.4"/><circle cx="786" cy="358" r="2.7"/><circle cx="420" cy="560" r="1.9"/>
+      </g>
+    </g>
+  </svg>
+</div>
+
+<header class="site-head">
+  <div class="container head-row">
+    <a class="brand" href="index.html" aria-label="dAIgnostics — početna">
+      <img src="assets/daignostics-logo.svg" alt="dAIgnostics" class="brand-logo" width="153" height="36">
+    </a>
+    <nav class="main-nav" aria-label="Glavna navigacija">
+      <ul>
+        <li class="has-dd">
+          <a class="nav-link" href="rjesenja.html">Rješenja
+            <svg class="nav-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <ul class="dd">
+            <li><a href="rjesenja.html#health-studio">Health Studio — dijagnostička platforma</a></li>
+            <li><a href="rjesenja.html#dai-edge">dAI Edge — suverenost podataka</a></li>
+            <li><a href="rjesenja.html#ai-izvjestavanje">AI-asistirano izvještavanje</a></li>
+            <li><a href="rjesenja.html#cezih">Nacionalna povezivost (CEZIH)</a></li>
+            <li><a href="rjesenja.html#operacije">Optimizacija bolničkih resursa</a></li>
+          </ul>
+        </li>
+        <li class="has-dd">
+          <a class="nav-link" href="primjene.html" aria-current="page">Primjene
+            <svg class="nav-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <ul class="dd">
+            <li><a href="#radiologija">Nacrt radiološkog nalaza u sekundama</a></li>
+            <li><a href="#terapijska-lista">Digitalna terapijska lista</a></li>
+            <li><a href="#raspored">Automatski raspored liječnika</a></li>
+            <li><a href="#patologija">Modernizacija patološkog arhiva</a></li>
+            <li><a href="#biosignali">Od biosignala do nalaza</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <a class="btn btn-ghost btn-small" href="index.html#kontakt">Zatražite demo</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero subhero container">
+    <p class="eyebrow">Primjene</p>
+    <h1 class="hero-title">Core Stack u <span class="accent">praksi</span></h1>
+    <p class="lede">Konkretni problemi iz klinika, laboratorija i bolnica — i kako ih
+      slojevi dAI platforme rješavaju u svakodnevnom radu.</p>
+  </section>
+
+  <div class="page-sections container">
+
+    <section class="sol" id="radiologija" aria-labelledby="t-radiologija">
+      <p class="sol-kicker">Primjena 01 · Radiologija</p>
+      <h2 class="sol-title" id="t-radiologija">Nacrt radiološkog nalaza u sekundama, na hrvatskom</h2>
+      <ul class="layer-badges" aria-label="Korišteni slojevi">
+        <li class="lb lb-datahub"><i aria-hidden="true"></i>dAI DataHub</li>
+        <li class="lb lb-inference"><i aria-hidden="true"></i>dAI Inference</li>
+        <li class="lb lb-clarity"><i aria-hidden="true"></i>dAI Clarity</li>
+      </ul>
+      <div class="uc-block">
+        <span class="uc-label">Izazov</span>
+        <p>Radiolozi troše značajno vrijeme na pisanje nalaza i ručno traženje usporedivih prethodnih
+          slučajeva — pretraga po ključnim riječima ne pronalazi slučajeve opisane drugim terminima.</p>
+      </div>
+      <div class="uc-block">
+        <span class="uc-label">Rješenje</span>
+        <p>Sustav semantički rangira slične prethodne slučajeve iz vlastite baze ustanove i sastavlja
+          strukturiran nacrt nalaza utemeljen na njima. Liječnik nacrt provjerava, korigira i potpisuje —
+          a svaki korigirani nalaz odmah obogaćuje bazu znanja. Sve radi lokalno, bez slanja podataka
+          izvan ustanove.</p>
+      </div>
+      <ul class="points">
+        <li>Pretraga po značenju: „krv u mokraći” pronalazi i nalaze označene „hematurija” — višejezični model radi lokalno, bez API ključa</li>
+        <li>Nacrt nalaza vjeran stilu i terminologiji ustanove (CT abdomena, CT urografija, CT zdjelice)</li>
+        <li>Liječnik u petlji: nacrt je eksplicitno prijedlog za provjeru, korekciju i potpis</li>
+        <li>Sažetak anamneze u 3–6 kliničkih natuknica; patološki nalazi i mjere prikazani prvi</li>
+      </ul>
+      <p class="sol-note"><span class="status-chip">Pilot</span></p>
+    </section>
+
+    <section class="sol" id="terapijska-lista" aria-labelledby="t-terapijska">
+      <p class="sol-kicker">Primjena 02 · Specijalna klinika</p>
+      <h2 class="sol-title" id="t-terapijska">Digitalna terapijska lista: s papira u auditabilan zapis</h2>
+      <ul class="layer-badges" aria-label="Korišteni slojevi">
+        <li class="lb lb-edge"><i aria-hidden="true"></i>dAI Edge</li>
+        <li class="lb lb-clarity"><i aria-hidden="true"></i>dAI Clarity</li>
+      </ul>
+      <div class="uc-block">
+        <span class="uc-label">Izazov</span>
+        <p>Terapija pacijenta vodila se na papirnatom obrascu i odjelnoj Word listi — bez automatskih
+          sigurnosnih provjera, teško čitljivo i bez revizijskog traga.</p>
+      </div>
+      <div class="uc-block">
+        <span class="uc-label">Rješenje</span>
+        <p>Proces lijekova digitaliziran je od prijema do otpusta: sestra fotografira rukom ispisani
+          obrazac, AI prepoznavanje rukopisa uz obveznu ručnu potvrdu unosi dosadašnju terapiju,
+          liječnik ordinira uz PIN e-potpis, a primjene se evidentiraju uz krevet — i bez mreže.</p>
+      </div>
+      <ul class="points">
+        <li>Prepoznavanje rukopisa s pragom pouzdanosti i obveznom potvrdom čovjeka za svako polje; sirovi rezultat arhiviran radi sljedivosti</li>
+        <li>Automatska upozorenja na alergije provjerena u sučelju i na serveru, uz trajno logiran override</li>
+        <li>Serverski PIN e-potpis za usklađivanje, ordiniranje i prekid terapije; append-only revizijski trag</li>
+        <li>Offline-first rad (lokalna predmemorija + sinkronizacija) i EU hosting usklađen s GDPR-om</li>
+      </ul>
+      <p class="sol-note"><span class="status-chip">Demonstracijsko okruženje</span> Prikazano na fiktivnim podacima.</p>
+    </section>
+
+    <section class="sol" id="raspored" aria-labelledby="t-raspored">
+      <p class="sol-kicker">Primjena 03 · Specijalna kardiovaskularna bolnica</p>
+      <h2 class="sol-title" id="t-raspored">Automatski mjesečni raspored liječnika</h2>
+      <ul class="layer-badges" aria-label="Korišteni slojevi">
+        <li class="lb lb-inference"><i aria-hidden="true"></i>dAI Inference</li>
+        <li class="lb lb-clarity"><i aria-hidden="true"></i>dAI Clarity</li>
+      </ul>
+      <div class="uc-block">
+        <span class="uc-label">Izazov</span>
+        <p>Mjesečni raspored liječnika preko više lokacija i radilišta — odjel, ambulante,
+          kateterizacijski laboratorij, dežurstva — slagao se ručno u tablicama: sporo, podložno
+          greškama i bez jamstva poštivanja HZZO termina i fonda sati.</p>
+      </div>
+      <div class="uc-block">
+        <span class="uc-label">Rješenje</span>
+        <p>Optimizacijski solver generira raspored po satima uz tvrda pravila (kompetencije, fond sati,
+          HZZO prozori, putovanje između gradova) i slojevite prioritete. Kad termin ostane nepokriven,
+          sustav objašnjava zašto i predlaže konkretne mjere; kod bolovanja automatski rangira zamjene.</p>
+      </div>
+      <ul class="points">
+        <li>Matrica kompetencija liječnik × radilište (dozvoljeno / preferirano / zabranjeno) i HZZO ugovoreni prioritetni prozori</li>
+        <li>Dijagnostika nepokrivenih termina s ljestvicom relaksacija i konkretnim prijedlozima</li>
+        <li>Trenutno ponovno rješavanje objavljenog rasporeda kod izostanaka, uz verzioniranje i oznake izmjena</li>
+        <li>KPI nadzorna ploča: pokrivenost bez ručne intervencije, vrijeme do potvrđene zamjene</li>
+      </ul>
+      <p class="sol-note"><span class="status-chip">Samostalna aplikacija</span></p>
+    </section>
+
+    <section class="sol" id="patologija" aria-labelledby="t-patologija">
+      <p class="sol-kicker">Primjena 04 · Veterinarski patološki zavod</p>
+      <h2 class="sol-title" id="t-patologija">Spašavanje i modernizacija patološkog arhiva</h2>
+      <ul class="layer-badges" aria-label="Korišteni slojevi">
+        <li class="lb lb-datahub"><i aria-hidden="true"></i>dAI DataHub</li>
+        <li class="lb lb-inference"><i aria-hidden="true"></i>dAI Inference</li>
+        <li class="lb lb-clarity"><i aria-hidden="true"></i>dAI Clarity</li>
+      </ul>
+      <div class="uc-block">
+        <span class="uc-label">Izazov</span>
+        <p>Zavod za veterinarsku patologiju ostao je nakon ransomware napada s oštećenom legacy bazom
+          od više od 51 000 zapisa nalaza — i bez modernog sustava za svakodnevni rad.</p>
+      </div>
+      <div class="uc-block">
+        <span class="uc-label">Rješenje</span>
+        <p>Podaci su forenzički obnovljeni i pretvoreni u sigurnu, GDPR-usklađenu aplikaciju:
+          pretraživ arhiv, strukturirani obrasci nalaza po tipu pretrage (razudba, patohistologija,
+          citologija), upravljanje slikama, glasovna diktacija na hrvatskom i AI-nacrti nalaza —
+          uz inferenciju isključivo unutar EU-a.</p>
+      </div>
+      <ul class="points">
+        <li>Serverska pretraga i filtriranje 51 000+ zapisa: dijagnoza, nalaz, vlasnik, tip pretrage, liječnik, razdoblje</li>
+        <li>AI-nacrt strukturiranog nalaza na hrvatskom (zaglavlje, sekcije s opisom i dijagnozom, komentar)</li>
+        <li>Živa glasovna diktacija nalaza na hrvatskom jeziku (streaming transkripcija)</li>
+        <li>Kompletan GDPR paket: pravo na brisanje (čl. 17), minimizacija podataka, automatizacija retencije</li>
+      </ul>
+      <p class="sol-note"><span class="status-chip">Isporučeno</span> Dodatna mogućnost iste vertikale: pretraga medicinskih slika po vizualnoj sličnosti.</p>
+    </section>
+
+    <section class="sol" id="biosignali" aria-labelledby="t-biosignali">
+      <p class="sol-kicker">Primjena 05 · Klinička dijagnostika biosignala</p>
+      <h2 class="sol-title" id="t-biosignali">Od sirovog signala do nalaza u pacijentovu portalu</h2>
+      <ul class="layer-badges" aria-label="Korišteni slojevi">
+        <li class="lb lb-inference"><i aria-hidden="true"></i>dAI Inference</li>
+        <li class="lb lb-clarity"><i aria-hidden="true"></i>dAI Clarity</li>
+      </ul>
+      <div class="uc-block">
+        <span class="uc-label">Izazov</span>
+        <p>Liječnik s rezultatom spektralnog mjerenja biosignala treba brzu, transparentnu ML procjenu
+          i izvještaj koji može podijeliti s pacijentom — bez ručnog sastavljanja.</p>
+      </div>
+      <div class="uc-block">
+        <span class="uc-label">Rješenje</span>
+        <p>Liječnik učita mjerenja, ansambl neovisnih ML modela paralelno glasa o klasifikaciji s
+          prikazom pouzdanosti i glasova svakog modela, generativna AI sastavlja klinički narativ,
+          a PDF izvještaj stiže u pacijentov vlastiti sigurni portal.</p>
+      </div>
+      <ul class="points">
+        <li>Objašnjiv ansambl umjesto jedne crne kutije: većinsko glasanje s razradom po modelu i prosječnim vjerojatnostima</li>
+        <li>Ugrađeni pacijentov portal: pacijent vidi isključivo vlastite nalaze (granularna autorizacija)</li>
+        <li>AI-generirani narativni izvještaj + PDF s vremenski ograničenom poveznicom i opcijom slušanja</li>
+        <li>Serverless arhitektura s upravljanjem pacijentima i otvaranjem pacijentskih računa u jednom kliku</li>
+      </ul>
+      <p class="sol-note"><span class="status-chip">Demonstracijsko okruženje</span> Prikazano na fiktivnim podacima.</p>
+    </section>
+
+  </div>
+
+  <section class="cta container" id="kontakt">
+    <h2 class="cta-title">Imate sličan izazov?</h2>
+    <p class="cta-sub">Opišite nam svoj radni tijek — pokazat ćemo vam kako ga slojevi
+      Core Stacka rješavaju.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="mailto:info@daignostics.info">Zatražite demo</a>
+      <a class="btn btn-ghost" href="rjesenja.html">Pogledajte rješenja</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="container foot-row">
+    <img src="assets/daignostics-logo.svg" alt="" class="foot-logo" width="110" height="26">
+    <p><a href="rjesenja.html">Rješenja</a> · <a href="primjene.html">Primjene</a> · © 2026 dAIgnostics · <a href="https://daignostics.info">daignostics.info</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

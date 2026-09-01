@@ -13,11 +13,70 @@
 </head>
 <body>
 
+<div class="bg" aria-hidden="true">
+  <span class="bg-blob bg-blob--red"></span>
+  <span class="bg-blob bg-blob--blue"></span>
+  <svg class="bg-net bg-net--a" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" focusable="false" aria-hidden="true">
+    <g stroke="#8FA3C4" fill="#8FA3C4">
+      <path d="M -100 180 C 300 80, 520 340, 860 260 S 1420 120, 1750 240" fill="none" stroke-width="1.4" opacity=".14"/>
+      <path d="M -80 620 C 260 700, 540 520, 900 610 S 1460 740, 1720 640" fill="none" stroke-width="1.2" opacity=".11"/>
+      <path d="M 200 -60 C 340 260, 240 520, 430 820 S 620 980, 700 1100" fill="none" stroke-width="1.2" opacity=".10"/>
+      <g opacity=".2">
+        <circle cx="298" cy="105" r="2.4"/><circle cx="560" cy="322" r="1.8"/><circle cx="866" cy="258" r="2.6"/>
+        <circle cx="1180" cy="170" r="1.7"/><circle cx="1452" cy="152" r="2.2"/><circle cx="270" cy="676" r="2.1"/>
+        <circle cx="905" cy="612" r="2.5"/><circle cx="1310" cy="700" r="1.8"/><circle cx="330" cy="330" r="1.6"/>
+        <circle cx="428" cy="818" r="2.3"/><circle cx="1560" cy="420" r="1.9"/><circle cx="80" cy="420" r="1.8"/>
+      </g>
+    </g>
+  </svg>
+  <svg class="bg-net bg-net--b" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" focusable="false" aria-hidden="true">
+    <g stroke="#E5A9B4" fill="#E5A9B4">
+      <path d="M 1700 120 C 1320 260, 1080 140, 780 360 S 320 660, -80 560" fill="none" stroke-width="1.4" opacity=".13"/>
+      <path d="M 1750 820 C 1380 700, 1150 900, 820 780 S 380 640, 60 860" fill="none" stroke-width="1.2" opacity=".10"/>
+      <g opacity=".18">
+        <circle cx="1324" cy="256" r="2.4"/><circle cx="786" cy="358" r="2.7"/><circle cx="420" cy="560" r="1.9"/>
+        <circle cx="1140" cy="866" r="2.1"/><circle cx="824" cy="782" r="2.4"/><circle cx="180" cy="812" r="1.7"/>
+        <circle cx="1520" cy="500" r="1.8"/><circle cx="990" cy="120" r="1.7"/>
+      </g>
+    </g>
+  </svg>
+</div>
+
 <header class="site-head">
   <div class="container head-row">
-    <a class="brand" href="#" aria-label="dAIgnostics — početna">
+    <a class="brand" href="index.html" aria-label="dAIgnostics — početna">
       <img src="assets/daignostics-logo.svg" alt="dAIgnostics" class="brand-logo" width="153" height="36">
     </a>
+    <nav class="main-nav" aria-label="Glavna navigacija">
+      <ul>
+        <li class="has-dd">
+          <a class="nav-link" href="rjesenja.html">Rješenja
+            <svg class="nav-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <ul class="dd">
+            <li><a href="rjesenja.html#health-studio">Health Studio — dijagnostička platforma</a></li>
+            <li><a href="rjesenja.html#dai-edge">dAI Edge — suverenost podataka</a></li>
+            <li><a href="rjesenja.html#ai-izvjestavanje">AI-asistirano izvještavanje</a></li>
+            <li><a href="rjesenja.html#cezih">Nacionalna povezivost (CEZIH)</a></li>
+            <li><a href="rjesenja.html#operacije">Optimizacija bolničkih resursa</a></li>
+            <li><a class="dd-all" href="rjesenja.html">Sva rješenja →</a></li>
+          </ul>
+        </li>
+        <li class="has-dd">
+          <a class="nav-link" href="primjene.html">Primjene
+            <svg class="nav-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <ul class="dd">
+            <li><a href="primjene.html#radiologija">Nacrt radiološkog nalaza u sekundama</a></li>
+            <li><a href="primjene.html#terapijska-lista">Digitalna terapijska lista</a></li>
+            <li><a href="primjene.html#raspored">Automatski raspored liječnika</a></li>
+            <li><a href="primjene.html#patologija">Modernizacija patološkog arhiva</a></li>
+            <li><a href="primjene.html#biosignali">Od biosignala do nalaza</a></li>
+            <li><a class="dd-all" href="primjene.html">Sve primjene →</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
     <a class="btn btn-ghost btn-small" href="#kontakt">Zatražite demo</a>
   </div>
 </header>
@@ -42,7 +101,7 @@
           <div class="slab-lift">
             <div class="slab-idle">
               <button class="slab" type="button" id="slab-clarity">
-                <span class="face face--top"><span class="slab-mark" aria-hidden="true"><svg viewBox="0 0 32 32" focusable="false" aria-hidden="true"><g fill="#E21E3A"><path d="M16 5.2 25 10l-9 4.8L7 10z" opacity=".95"/><path d="M16 12.4 25 17.2l-9 4.8-9-4.8z" opacity=".7"/><path d="M16 19.6 25 24.4l-9 4.8-9-4.8z" opacity=".45"/></g></svg></span><span class="slab-label">dAI Clarity<span class="visually-hidden"> — sloj 1 od 4, prikaži ključne značajke</span></span></span>
+                <span class="face face--top"><span class="detail d-frame" aria-hidden="true"></span><span class="detail d-screen" aria-hidden="true"></span><span class="detail d-slot d-slot-1" aria-hidden="true"></span><span class="detail d-slot d-slot-2" aria-hidden="true"></span><span class="slab-mark" aria-hidden="true"><svg viewBox="0 0 32 32" focusable="false" aria-hidden="true"><g fill="#E21E3A"><path d="M16 5.2 25 10l-9 4.8L7 10z" opacity=".95"/><path d="M16 12.4 25 17.2l-9 4.8-9-4.8z" opacity=".7"/><path d="M16 19.6 25 24.4l-9 4.8-9-4.8z" opacity=".45"/></g></svg></span><span class="slab-label">dAI Clarity<span class="visually-hidden"> — sloj 1 od 4, prikaži ključne značajke</span></span></span>
                 <span class="face face--south" aria-hidden="true"></span>
                 <span class="face face--east" aria-hidden="true"></span>
               </button>
@@ -55,10 +114,15 @@
           <div class="slab-lift">
             <div class="slab-idle">
               <button class="slab" type="button" id="slab-inference">
-                <span class="face face--top"><span class="slab-label">dAI Inference Engine<span class="visually-hidden"> — sloj 2 od 4, prikaži ključne značajke</span></span></span>
+                <span class="face face--top"><span class="detail d-chip" aria-hidden="true"></span><span class="detail d-trace d-trace-1" aria-hidden="true"></span><span class="detail d-trace d-trace-2" aria-hidden="true"></span><span class="detail d-port" aria-hidden="true"></span><span class="slab-label">dAI Inference Engine<span class="visually-hidden"> — sloj 2 od 4, prikaži ključne značajke</span></span></span>
                 <span class="face face--south" aria-hidden="true"></span>
                 <span class="face face--east" aria-hidden="true"></span>
               </button>
+              <span class="module" aria-hidden="true">
+                <span class="m-face m-top"><span class="m-label">Zamjenjivi<br>AI Model</span></span>
+                <span class="m-face m-south"></span>
+                <span class="m-face m-east"></span>
+              </span>
             </div>
           </div>
         </div>
@@ -68,7 +132,7 @@
           <div class="slab-lift">
             <div class="slab-idle">
               <button class="slab" type="button" id="slab-datahub">
-                <span class="face face--top"><span class="slab-label">dAI DataHub<span class="visually-hidden"> — sloj 3 od 4, prikaži ključne značajke</span></span></span>
+                <span class="face face--top"><span class="detail d-panel" aria-hidden="true"></span><span class="detail d-vent d-vent-1" aria-hidden="true"></span><span class="detail d-vent d-vent-2" aria-hidden="true"></span><span class="detail d-vent d-vent-3" aria-hidden="true"></span><span class="detail d-pad d-pad-nw" aria-hidden="true"></span><span class="detail d-pad d-pad-ne" aria-hidden="true"></span><span class="detail d-pad d-pad-sw" aria-hidden="true"></span><span class="detail d-pad d-pad-se" aria-hidden="true"></span><span class="slab-label">dAI DataHub<span class="visually-hidden"> — sloj 3 od 4, prikaži ključne značajke</span></span></span>
                 <span class="face face--south" aria-hidden="true"></span>
                 <span class="face face--east" aria-hidden="true"></span>
               </button>
@@ -81,9 +145,12 @@
           <div class="slab-lift">
             <div class="slab-idle">
               <button class="slab" type="button" id="slab-edge">
-                <span class="face face--top"><span class="slab-label">dAI Edge<span class="visually-hidden"> — sloj 4 od 4, prikaži ključne značajke</span></span></span>
+                <span class="face face--top"><span class="detail d-pad d-pad-nw" aria-hidden="true"></span><span class="detail d-pad d-pad-ne" aria-hidden="true"></span><span class="detail d-pad d-pad-sw" aria-hidden="true"></span><span class="detail d-pad d-pad-se" aria-hidden="true"></span><span class="detail d-vent-wide" aria-hidden="true"></span><span class="detail d-led" aria-hidden="true"></span><span class="slab-label">dAI Edge<span class="visually-hidden"> — sloj 4 od 4, prikaži ključne značajke</span></span></span>
                 <span class="face face--south" aria-hidden="true"></span>
                 <span class="face face--east" aria-hidden="true"></span>
+                <span class="post post-nw" aria-hidden="true"><i class="post-s"></i><i class="post-e"></i><i class="post-cap"></i></span>
+                <span class="post post-ne" aria-hidden="true"><i class="post-s"></i><i class="post-e"></i><i class="post-cap"></i></span>
+                <span class="post post-sw" aria-hidden="true"><i class="post-s"></i><i class="post-e"></i><i class="post-cap"></i></span>
               </button>
             </div>
           </div>
@@ -240,7 +307,7 @@
 <footer class="site-foot">
   <div class="container foot-row">
     <img src="assets/daignostics-logo.svg" alt="" class="foot-logo" width="110" height="26">
-    <p>© 2026 dAIgnostics · <a href="https://daignostics.info">daignostics.info</a></p>
+    <p><a href="rjesenja.html">Rješenja</a> · <a href="primjene.html">Primjene</a> · © 2026 dAIgnostics · <a href="https://daignostics.info">daignostics.info</a></p>
   </div>
 </footer>
 
