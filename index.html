@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>dAIgnostics — The Core Stack</title>
+  <meta name="description" content="The Core Stack: četiri sloja dAIgnostics platforme — dAI Clarity, dAI Inference Engine, dAI DataHub i dAI Edge. Od sigurne ingestije podataka do objašnjivog nalaza za kliničare.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="container head-row">
+    <a class="brand" href="#" aria-label="dAIgnostics — početna">
+      <img src="assets/daignostics-logo.svg" alt="dAIgnostics" class="brand-logo" width="153" height="36">
+    </a>
+    <a class="btn btn-ghost btn-small" href="#kontakt">Zatražite demo</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero container">
+    <p class="eyebrow">Proizvodna arhitektura</p>
+    <h1 id="hero-title" class="hero-title"><span lang="en">The <span class="accent">Core</span> Stack</span></h1>
+    <p class="lede">Četiri sloja koja čine cjelovitu AI dijagnostičku platformu —
+      od sigurne ingestije podataka do objašnjivog nalaza za kliničare.</p>
+    <p class="hint" aria-hidden="true">Prijeđite pokazivačem ili dodirnite sloj za ključne značajke</p>
+  </section>
+
+  <section class="stack-viz container" id="stack" data-active="" data-pinned="false" aria-labelledby="hero-title">
+
+    <div class="scene-wrap">
+      <div class="ground-shadow" aria-hidden="true"></div>
+      <div class="scene">
+
+        <div class="slab-pos" style="--i:3" data-id="clarity">
+          <span class="anchor" aria-hidden="true"></span>
+          <div class="slab-lift">
+            <div class="slab-idle">
+              <button class="slab" type="button" id="slab-clarity">
+                <span class="face face--top"><span class="slab-mark" aria-hidden="true"><svg viewBox="0 0 32 32" focusable="false" aria-hidden="true"><g fill="#E21E3A"><path d="M16 5.2 25 10l-9 4.8L7 10z" opacity=".95"/><path d="M16 12.4 25 17.2l-9 4.8-9-4.8z" opacity=".7"/><path d="M16 19.6 25 24.4l-9 4.8-9-4.8z" opacity=".45"/></g></svg></span><span class="slab-label">dAI Clarity<span class="visually-hidden"> — sloj 1 od 4, prikaži ključne značajke</span></span></span>
+                <span class="face face--south" aria-hidden="true"></span>
+                <span class="face face--east" aria-hidden="true"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="slab-pos" style="--i:2" data-id="inference">
+          <span class="anchor" aria-hidden="true"></span>
+          <div class="slab-lift">
+            <div class="slab-idle">
+              <button class="slab" type="button" id="slab-inference">
+                <span class="face face--top"><span class="slab-label">dAI Inference Engine<span class="visually-hidden"> — sloj 2 od 4, prikaži ključne značajke</span></span></span>
+                <span class="face face--south" aria-hidden="true"></span>
+                <span class="face face--east" aria-hidden="true"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="slab-pos" style="--i:1" data-id="datahub">
+          <span class="anchor" aria-hidden="true"></span>
+          <div class="slab-lift">
+            <div class="slab-idle">
+              <button class="slab" type="button" id="slab-datahub">
+                <span class="face face--top"><span class="slab-label">dAI DataHub<span class="visually-hidden"> — sloj 3 od 4, prikaži ključne značajke</span></span></span>
+                <span class="face face--south" aria-hidden="true"></span>
+                <span class="face face--east" aria-hidden="true"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="slab-pos" style="--i:0" data-id="edge">
+          <span class="anchor" aria-hidden="true"></span>
+          <div class="slab-lift">
+            <div class="slab-idle">
+              <button class="slab" type="button" id="slab-edge">
+                <span class="face face--top"><span class="slab-label">dAI Edge<span class="visually-hidden"> — sloj 4 od 4, prikaži ključne značajke</span></span></span>
+                <span class="face face--south" aria-hidden="true"></span>
+                <span class="face face--east" aria-hidden="true"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="cards">
+
+      <article class="card" style="--ci:0" data-id="clarity">
+        <h2 class="card-head">
+          <button class="card-toggle" type="button" id="trig-clarity">
+            <span class="card-swatch" aria-hidden="true"></span>
+            <span class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true">
+                <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/>
+                <path d="M14 3v5h5"/>
+                <path d="M9 14.5l2 2 4-4.5"/>
+              </svg>
+            </span>
+            <span class="card-title">dAI Clarity</span>
+            <span class="chev" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </button>
+        </h2>
+        <p class="card-desc">Sloj za objašnjivo izvještavanje prema kliničarima (audit-ready output).</p>
+        <div class="panel-clip">
+          <div class="panel" role="region" id="panel-clarity" aria-labelledby="trig-clarity">
+            <ul class="features">
+              <li>Audit-ready nalazi s potpunim tragom odlučivanja</li>
+              <li>Objašnjivost po nalazu: ključni čimbenici, SHAP i saliency mape</li>
+              <li>Pragovi pouzdanosti i automatsko označavanje graničnih nalaza</li>
+              <li>Izvoz u HL7 FHIR i PDF uz digitalni potpis</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" style="--ci:1" data-id="inference">
+        <h2 class="card-head">
+          <button class="card-toggle" type="button" id="trig-inference">
+            <span class="card-swatch" aria-hidden="true"></span>
+            <span class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true">
+                <circle cx="5" cy="6" r="2.2"/><circle cx="19" cy="6" r="2.2"/><circle cx="12" cy="18" r="2.2"/>
+                <path d="M6.5 7.6L10.5 16M17.5 7.6L13.5 16M7.2 6h9.6"/>
+              </svg>
+            </span>
+            <span class="card-title">dAI Inference Engine</span>
+            <span class="chev" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </button>
+        </h2>
+        <p class="card-desc">Izvođenje verzioniranih analitičkih tijekova rada (CWL standard) s Model-Agnostic učitačem.</p>
+        <div class="panel-clip">
+          <div class="panel" role="region" id="panel-inference" aria-labelledby="trig-inference">
+            <ul class="features">
+              <li>Verzionirani analitički tijekovi rada prema CWL standardu</li>
+              <li>Model-Agnostic učitač: ONNX, PyTorch, TensorFlow, scikit-learn</li>
+              <li>Reproducibilnost: rezultat vezan uz točnu verziju modela i podataka</li>
+              <li>Horizontalno skaliranje i redovi čekanja za serijske analize</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" style="--ci:2" data-id="datahub">
+        <h2 class="card-head">
+          <button class="card-toggle" type="button" id="trig-datahub">
+            <span class="card-swatch" aria-hidden="true"></span>
+            <span class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true">
+                <ellipse cx="12" cy="5.5" rx="7" ry="2.8"/>
+                <path d="M5 5.5v13c0 1.55 3.13 2.8 7 2.8s7-1.25 7-2.8v-13"/>
+                <path d="M5 12c0 1.55 3.13 2.8 7 2.8s7-1.25 7-2.8"/>
+              </svg>
+            </span>
+            <span class="card-title">dAI DataHub</span>
+            <span class="chev" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </button>
+        </h2>
+        <p class="card-desc">Upravljana baza podataka s punom sljedivošću (provenance).</p>
+        <div class="panel-clip">
+          <div class="panel" role="region" id="panel-datahub" aria-labelledby="trig-datahub">
+            <ul class="features">
+              <li>Puna sljedivost (provenance) svakog zapisa i transformacije</li>
+              <li>Kontrola pristupa po ulogama (RBAC) i cjelovit revizijski dnevnik</li>
+              <li>Verzioniranje skupova podataka s nepromjenjivom poviješću</li>
+              <li>Standardizirani rječnici i formati: LOINC, SNOMED CT, DICOM, OMOP</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" style="--ci:3" data-id="edge">
+        <h2 class="card-head">
+          <button class="card-toggle" type="button" id="trig-edge">
+            <span class="card-swatch" aria-hidden="true"></span>
+            <span class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true">
+                <path d="M12 3l7 3v5c0 4.6-3 8.4-7 10-4-1.6-7-5.4-7-10V6z"/>
+                <path d="M9 11.8l2 2 4-4.3"/>
+              </svg>
+            </span>
+            <span class="card-title">dAI Edge</span>
+            <span class="chev" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </button>
+        </h2>
+        <p class="card-desc">Sigurna ingestija i lokalna harmonizacija (sovereignty layer) na lokaciji bolnice.</p>
+        <div class="panel-clip">
+          <div class="panel" role="region" id="panel-edge" aria-labelledby="trig-edge">
+            <ul class="features">
+              <li>Sigurna ingestija na lokaciji bolnice (on-premise)</li>
+              <li>Lokalna harmonizacija i pseudonimizacija prije svake obrade</li>
+              <li>Suverenitet podataka: podaci ne napuštaju ustanovu bez odobrenja</li>
+              <li>Šifriranje u mirovanju i prijenosu (AES-256, TLS 1.3) uz LIS/BIS integraciju</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <svg class="leaders" aria-hidden="true" focusable="false"></svg>
+  </section>
+
+  <section class="badges" aria-label="Standardi i usklađenost">
+    <div class="container badge-row">
+      <span class="chip">CWL — Common Workflow Language</span>
+      <span class="chip">HL7 FHIR / DICOM</span>
+      <span class="chip">Spremno za GDPR i EU AI Act</span>
+      <span class="chip">On-premise sovereignty</span>
+    </div>
+  </section>
+
+  <section class="cta container" id="kontakt">
+    <h2 class="cta-title">Spremni za suverenu dijagnostiku?</h2>
+    <p class="cta-sub">Provjerite kako se Core Stack uklapa u vaš laboratorij —
+      od prvog uzorka do audit-ready nalaza.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="mailto:info@daignostics.info">Zatražite demo</a>
+      <a class="btn btn-ghost" href="https://daignostics.info" target="_blank" rel="noopener">Saznajte više na daignostics.info</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="container foot-row">
+    <img src="assets/daignostics-logo.svg" alt="" class="foot-logo" width="110" height="26">
+    <p>© 2026 dAIgnostics · <a href="https://daignostics.info">daignostics.info</a></p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
