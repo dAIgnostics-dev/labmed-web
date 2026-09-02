@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>dAIgnostics — LabMed</title>
-  <meta name="description" content="LabMed: the four layers of the dAIgnostics platform — dAI Clarity, dAI Inference Engine, dAI DataHub and dAI Edge. From secure data ingestion to explainable clinical reports.">
+  <title>dAIgnostics — LabMed Studio</title>
+  <meta name="description" content="LabMed Studio: one platform for everything your lab runs on — instrument integration, data organization, document validation, scheduling, billing and automated report generation, with every result traceable back to its source.">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="alternate" hreflang="en" href="index.html">
   <link rel="alternate" hreflang="hr" href="hr/index.html">
@@ -85,12 +85,62 @@
 </header>
 
 <main>
-  <div class="pin-region">
-  <section class="hero container">
-    <h1 id="hero-title" class="hero-title">Lab<span class="accent">Med</span></h1>
+  <section class="intro container" aria-labelledby="hero-title">
+    <div class="intro-grid">
+      <div class="intro-copy">
+        <h1 id="hero-title" class="hero-title">Lab<span class="accent">Med</span> Studio</h1>
+        <p class="intro-tagline" role="doc-subtitle">One platform for everything your lab runs on</p>
+        <p class="intro-lede">LabMed Studio automates the full lab pipeline — from the moment a sample or document arrives to the moment a finished report leaves. Instrument integration, data organization, document validation, scheduling, billing and automated report generation all live in one system, with every result traceable back to its source.</p>
+        <p class="intro-lede">Built for medical, diagnostic and research labs that are tired of stitching together an LIMS, a spreadsheet, a scheduling tool, an invoicing tool and a folder of scripts.</p>
+        <div class="intro-actions">
+          <a class="btn btn-primary" href="#contact">Request a demo</a>
+        </div>
+      </div>
+      <div class="intro-media">
+        <img src="assets/hero-labmed.jpg" alt="A laboratory scientist pipetting a sample beside a microscope, with analysis dashboards on the screen behind them" width="1248" height="832" fetchpriority="high" decoding="async">
+      </div>
+    </div>
+
+    <div class="feature-grid">
+      <article class="feature">
+        <h2 class="feature-title">Lab pipeline automation</h2>
+        <p>Connect instruments, import results and metadata automatically, run technical checks and quality control, and push everything through standardized, reproducible workflows.</p>
+      </article>
+      <article class="feature">
+        <h2 class="feature-title">Data organization and governance</h2>
+        <p>Every measurement stays linked to its sample, operator, instrument, protocol version and analytical pipeline. Versioned, searchable and audit-ready.</p>
+      </article>
+      <article class="feature">
+        <h2 class="feature-title">Automated document checking</h2>
+        <p>Intake forms, referrals, consent and accompanying documentation are validated for completeness and consistency before they slow anything down.</p>
+      </article>
+      <article class="feature">
+        <h2 class="feature-title">Work organization and scheduling</h2>
+        <p>Staff shifts, instrument availability, sample queues and turnaround times are planned in one place instead of five.</p>
+      </article>
+      <article class="feature">
+        <h2 class="feature-title">Billing</h2>
+        <p>Services, panels and cases are tracked from order to invoice, with no manual reconciliation at the end of the month.</p>
+      </article>
+      <article class="feature">
+        <h2 class="feature-title">Automated report and description generation</h2>
+        <p>Findings, interpretations and result descriptions are drafted from the underlying data, ready for review rather than written from scratch.</p>
+      </article>
+      <article class="feature">
+        <h2 class="feature-title">Analysis and interpretation</h2>
+        <p>Statistical and AI processing, multimodal integration where relevant, and results presented with confidence, uncertainty and full traceability — never an unexplained score.</p>
+      </article>
+    </div>
   </section>
 
-  <section class="stack-viz container" id="stack" data-active="" data-pinned="false" aria-labelledby="hero-title">
+  <div class="pin-region">
+  <section class="hero container">
+    <p class="eyebrow">Platform architecture</p>
+    <h2 id="stack-title" class="hero-title stack-title">The Core Stack</h2>
+    <p class="hint">Hover or tap a layer to see what it does.</p>
+  </section>
+
+  <section class="stack-viz container" id="stack" data-active="" data-pinned="false" aria-labelledby="stack-title">
 
     <div class="scene-wrap">
       <div class="ground-shadow" aria-hidden="true"></div>
@@ -162,7 +212,7 @@
     <div class="cards">
 
       <article class="card" style="--ci:0" data-id="clarity">
-        <h2 class="card-head">
+        <h3 class="card-head">
           <button class="card-toggle" type="button" id="trig-clarity">
             <span class="card-swatch" aria-hidden="true"></span>
             <span class="card-icon" aria-hidden="true">
@@ -177,7 +227,7 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
             </span>
           </button>
-        </h2>
+        </h3>
         <p class="card-desc">Explainable reporting layer for clinicians (audit-ready output).</p>
         <div class="panel-clip">
           <div class="panel" role="region" id="panel-clarity" aria-labelledby="trig-clarity">
@@ -192,7 +242,7 @@
       </article>
 
       <article class="card" style="--ci:1" data-id="inference">
-        <h2 class="card-head">
+        <h3 class="card-head">
           <button class="card-toggle" type="button" id="trig-inference">
             <span class="card-swatch" aria-hidden="true"></span>
             <span class="card-icon" aria-hidden="true">
@@ -206,12 +256,12 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
             </span>
           </button>
-        </h2>
-        <p class="card-desc">Versioned analytical workflow execution (CWL standard) with a model-agnostic loader.</p>
+        </h3>
+        <p class="card-desc">Versioned analytical workflow execution with a model-agnostic loader.</p>
         <div class="panel-clip">
           <div class="panel" role="region" id="panel-inference" aria-labelledby="trig-inference">
             <ul class="features">
-              <li>Versioned analytical workflows based on the CWL standard</li>
+              <li>Versioned, reproducible analytical workflows</li>
               <li>Model-agnostic loader: ONNX, PyTorch, TensorFlow, scikit-learn</li>
               <li>Reproducibility: every result tied to the exact model and data version</li>
               <li>Horizontal scaling and queues for batch analyses</li>
@@ -221,7 +271,7 @@
       </article>
 
       <article class="card" style="--ci:2" data-id="datahub">
-        <h2 class="card-head">
+        <h3 class="card-head">
           <button class="card-toggle" type="button" id="trig-datahub">
             <span class="card-swatch" aria-hidden="true"></span>
             <span class="card-icon" aria-hidden="true">
@@ -236,7 +286,7 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
             </span>
           </button>
-        </h2>
+        </h3>
         <p class="card-desc">Managed database with full provenance.</p>
         <div class="panel-clip">
           <div class="panel" role="region" id="panel-datahub" aria-labelledby="trig-datahub">
@@ -251,7 +301,7 @@
       </article>
 
       <article class="card" style="--ci:3" data-id="edge">
-        <h2 class="card-head">
+        <h3 class="card-head">
           <button class="card-toggle" type="button" id="trig-edge">
             <span class="card-swatch" aria-hidden="true"></span>
             <span class="card-icon" aria-hidden="true">
@@ -265,7 +315,7 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
             </span>
           </button>
-        </h2>
+        </h3>
         <p class="card-desc">Secure ingestion and local harmonization (sovereignty layer) on hospital premises.</p>
         <div class="panel-clip">
           <div class="panel" role="region" id="panel-edge" aria-labelledby="trig-edge">
@@ -288,7 +338,7 @@
   <div class="curtain">
   <section class="badges" aria-label="Standards and compliance">
     <div class="container badge-row">
-      <span class="chip">CWL — Common Workflow Language</span>
+      <span class="chip">Versioned, reproducible workflows</span>
       <span class="chip">HL7 FHIR / DICOM</span>
       <span class="chip">GDPR &amp; EU AI Act ready</span>
       <span class="chip">On-premise sovereignty</span>
@@ -297,7 +347,7 @@
 
   <section class="cta container" id="contact">
     <h2 class="cta-title">Ready for sovereign diagnostics?</h2>
-    <p class="cta-sub">See how LabMed fits your laboratory — from the first sample
+    <p class="cta-sub">See how LabMed Studio fits your laboratory — from the first sample
       to an audit-ready report.</p>
     <div class="cta-row">
       <a class="btn btn-primary" href="mailto:info@daignostics.info">Request a demo</a>

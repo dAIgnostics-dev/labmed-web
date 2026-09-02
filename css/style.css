@@ -359,25 +359,29 @@ img { max-width: 100%; height: auto; }
 }
 
 /* --------------------------------------------------------------------------
-   Curtain scroll (homepage, desktop): the hero + stack pin in place and the
-   sections below rise up over them. --pin-top is set from JS so a region
-   taller than the viewport scrolls through first, then pins.
+   Curtain scroll (homepage, desktop): once the intro has scrolled past, the
+   stack heading + stack pin in place and the sections below rise up over
+   them. --pin-top is set from JS so a region taller than the space under the
+   header gets a negative offset and scrolls through first, then pins.
    -------------------------------------------------------------------------- */
 
 @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
   .pin-region {
     position: sticky;
-    top: var(--pin-top, 72px); /* below the sticky header: pinned from the very first scroll */
+    top: var(--pin-top, 72px); /* just below the sticky header */
     z-index: 0;
   }
-  /* tighten the vertical rhythm so hero + stack fit a typical desktop
-     viewport: the region then pins at top:0 and the curtain rises from the
-     very first scroll, with nothing moving first */
-  .pin-region .hero { padding-block: 34px 0; }
-  .pin-region .stack-viz { padding-block: 10px 44px; }
+  /* tighten the vertical rhythm so heading + stack fit under the header on a
+     typical desktop viewport (incl. 1280x720), so the region pins whole */
+  .pin-region .hero { padding-block: 16px 0; }
+  .pin-region .hint { margin-top: 12px; }
+  .pin-region .stack-viz { padding-block: 8px 24px; }
   .curtain {
     position: relative;
     z-index: 2;
+    /* dwell: the pinned stack stays fully uncovered for a stretch of scroll
+       before the curtain starts to rise over it, so it can be explored */
+    margin-top: 30vh;
     background: #fff;
     border-radius: 28px 28px 0 0;
     overflow: hidden; /* safe: no 3D scene inside the curtain */
@@ -574,17 +578,127 @@ img { max-width: 100%; height: auto; }
 }
 
 /* Hero entrance (pure CSS, plays on load) */
-.eyebrow, .hero-title, .lede, .hint {
-  animation: heroIn .5s var(--ease-out) both;
+.eyebrow, .hero-title, .lede, .hint,
+.intro-tagline, .intro-lede, .intro-actions, .intro-media {
+  /* backwards, not both: the end state equals the natural style, and a
+     filled-forward transform would keep .intro-media a stacking context
+     that paints the photo's shadow over the feature cards below */
+  animation: heroIn .5s var(--ease-out) backwards;
 }
 .hero-title { animation-delay: .08s; }
-.lede { animation-delay: .16s; }
-.hint { animation-delay: .24s; }
+.lede, .intro-tagline { animation-delay: .16s; }
+.hint, .intro-lede { animation-delay: .24s; }
+.intro-actions { animation-delay: .32s; }
+.intro-media { animation-delay: .2s; }
 
 @keyframes heroIn {
   from { opacity: 0; transform: translateY(14px); }
-  to   { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: none; } /* none, not translateY(0): a retained transform
+                                            would leave a stacking context that paints
+                                            the hero photo's shadow over the cards below */
 }
+
+/* --------------------------------------------------------------------------
+   Intro — headline and copy beside the hero photo, then the feature grid.
+   Lives ABOVE the pin-region: the page opens on text + image and the
+   interactive stack follows on scroll.
+   -------------------------------------------------------------------------- */
+
+.intro { padding-block: 64px 24px; }
+
+.intro-grid {
+  display: grid;
+  gap: 32px;
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .intro-grid {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 6fr);
+    gap: 56px;
+  }
+}
+
+.intro-copy { min-width: 0; }
+
+.intro-tagline {
+  margin: 18px 0 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(22px, 2.6vw, 30px);
+  line-height: 1.2;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.intro-lede {
+  margin: 16px 0 0;
+  max-width: 62ch;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.intro-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.intro-media {
+  margin: 0;
+  min-width: 0;
+}
+
+.intro-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 18px;
+  box-shadow: 0 24px 60px rgba(48, 45, 45, .16);
+}
+
+.feature-grid {
+  display: grid;
+  gap: 16px;
+  margin-top: 56px;
+}
+
+@media (min-width: 720px) {
+  .feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 1024px) {
+  .feature-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+  /* a lone card in the last row sits in the middle column instead of hugging the left */
+  .feature:last-child:nth-child(3n + 1) { grid-column: 2; }
+}
+
+.feature {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--red);
+  border-radius: 12px;
+  padding: 20px 22px 22px;
+  box-shadow: 0 1px 2px rgba(48, 45, 45, .06);
+}
+
+.feature-title {
+  margin: 0 0 8px;
+  font: 600 17px/1.3 var(--font-ui);
+  color: var(--ink);
+}
+
+.feature p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+/* Heading above the interactive stack — an h2 now, the h1 lives in .intro */
+.stack-title { font-size: clamp(28px, 3.6vw, 42px); }
 
 /* --------------------------------------------------------------------------
    Stack section layout
@@ -1464,6 +1578,9 @@ body.page-hidden .d-led {
   .container { padding-inline: 20px; }
   .hero { padding-block: 52px 4px; }
   .lede { font-size: 15.5px; }
+  .intro { padding-block: 40px 8px; }
+  .intro-lede { font-size: 15.5px; }
+  .feature-grid { margin-top: 40px; }
   .slab-label { font-size: 15px; }
   .cta { padding-block: 60px; }
   .btn { width: min(100%, 340px); }
@@ -1477,7 +1594,8 @@ body.page-hidden .d-led {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 
-  .eyebrow, .hero-title, .lede, .hint {
+  .eyebrow, .hero-title, .lede, .hint,
+  .intro-tagline, .intro-lede, .intro-actions, .intro-media {
     animation-duration: .15s;
     animation-delay: 0s;
   }
