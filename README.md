@@ -12,11 +12,13 @@ responsive single page presenting the four platform layers:
 
 ## Stack
 
-Vanilla HTML + CSS + JS — no frameworks, no build step.
+Vanilla HTML + CSS + JS — no frameworks, no build step. English is the default
+language (site root); the Croatian version lives in `hr/`, with a language
+switch (HR/EN pill) in the header of every page.
 
-- `index.html` — landing page with the interactive Core Stack, Croatian content (`lang="hr"`)
-- `rjesenja.html` — Solutions page (5 offerings grounded in dAIgnostics-dev repos)
-- `primjene.html` — Use-cases page (5 deployment stories, clients anonymized)
+- `index.html` — landing page ("LabMed") with the interactive stack (English)
+- `solutions.html` / `use-cases.html` — English marketing pages
+- `hr/index.html`, `hr/rjesenja.html`, `hr/primjene.html` — Croatian versions
 - `css/style.css` — brand tokens from daignostics.info (red `#E21E3A` / `#BB1930`,
   ink `#302D2D`, Inter + self-hosted Adarsh Sans), isometric 3D scene, responsive
   breakpoints (360 px → wide desktop), `prefers-reduced-motion` support

@@ -12,8 +12,8 @@
   if (!section) return;
 
   var scene = section.querySelector('.scene');
-  var sceneWrap = section.querySelector('.scene-wrap');
   var svg = section.querySelector('.leaders');
+  var pinRegion = document.querySelector('.pin-region');
 
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   var desktop = window.matchMedia('(min-width: 1024px)');
@@ -47,6 +47,7 @@
   var settleTimer = null;
   var reconcileTimer = null;
   var lastX = -1, lastY = -1;
+  var suppress = null; // {id, until}: blocks immediate re-hover after a self-inflicted unhover
 
   function activeId() { return state.pinned || state.hovered; }
 
@@ -96,6 +97,7 @@
 
   function hoverEnter(id) {
     if (!section.classList.contains('is-settled')) return; // let the entrance finish
+    if (suppress && suppress.id === id && Date.now() < suppress.until) return;
     window.clearTimeout(leaveTimer);
     window.clearTimeout(enterTimer);
     enterTimer = window.setTimeout(function () {
@@ -180,17 +182,12 @@
       if (ev.pointerType !== 'mouse') return;
       var under = slabUnderPoint(ev);
       if (under === id) { queueReconcile(); return; } // spurious: pointer still over this slab
-      if (!under) {
-        // No slab under the pointer, but still inside the stack area: the slab
-        // lifted itself out from under a stationary cursor (bottom layer has
-        // nothing behind it to backfill). Keep the hover — a real exit crosses
-        // the scene-wrap boundary or lands on another slab/card.
-        var wr = sceneWrap.getBoundingClientRect();
-        if (ev.clientX >= wr.left - 8 && ev.clientX <= wr.right + 8 &&
-            ev.clientY >= wr.top - 8 && ev.clientY <= wr.bottom + 8) {
-          queueReconcile();
-          return;
-        }
+      if (!under && state.hovered === id) {
+        // The slab lifted itself out from under a stationary cursor (bottom
+        // layer has nothing behind it to backfill). Reset as the user expects,
+        // but briefly suppress re-hovering this slab so it can't bounce:
+        // dropping back brings it under the cursor and re-fires enter.
+        suppress = { id: id, until: Date.now() + 600 };
       }
       hoverLeave();
     });
@@ -256,7 +253,16 @@
     });
   }
 
+  // Curtain scroll: a pin region taller than the viewport gets a negative
+  // sticky top so it scrolls through first, then pins while sections rise.
+  function updatePin() {
+    if (!pinRegion) return;
+    var top = Math.min(0, window.innerHeight - pinRegion.offsetHeight);
+    pinRegion.style.setProperty('--pin-top', top + 'px');
+  }
+
   function measure() {
+    updatePin();
     if (!desktop.matches) return;
     var sr = section.getBoundingClientRect();
     if (sr.width === 0) return;

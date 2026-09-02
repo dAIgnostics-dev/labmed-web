@@ -50,7 +50,8 @@ body {
   background: transparent; /* the fixed .bg layer shows through */
   color: var(--ink);
   font: 400 16px/1.55 var(--font-ui);
-  overflow-x: hidden;
+  /* no overflow on body: html{overflow-x:clip} handles clipping, and a body
+     scroll container would break position:sticky for the curtain effect */
 }
 
 /* --------------------------------------------------------------------------
@@ -113,8 +114,49 @@ body {
 }
 
 body.page-hidden .bg-blob,
-body.page-hidden .bg-net {
+body.page-hidden .bg-net,
+body.page-hidden .bg-net path,
+body.page-hidden .bg-net g > g {
   animation-play-state: paused;
+}
+
+/* The strands themselves undulate: CSS animates the path's `d` between
+   structurally identical beziers (Chromium/Firefox; Safari falls back to the
+   whole-layer drift). Dots twinkle via group opacity. */
+
+.bg-net--a path:nth-of-type(1) { animation: waveA1 16s ease-in-out infinite alternate; }
+.bg-net--a path:nth-of-type(2) { animation: waveA2 20s ease-in-out infinite alternate; animation-delay: -6s; }
+.bg-net--a path:nth-of-type(3) { animation: waveA3 18s ease-in-out infinite alternate; animation-delay: -11s; }
+.bg-net--b path:nth-of-type(1) { animation: waveB1 17s ease-in-out infinite alternate; animation-delay: -4s; }
+.bg-net--b path:nth-of-type(2) { animation: waveB2 21s ease-in-out infinite alternate; animation-delay: -9s; }
+
+@keyframes waveA1 {
+  from { d: path("M -100 180 C 300 80, 520 340, 860 260 S 1420 120, 1750 240"); }
+  to   { d: path("M -100 215 C 300 150, 520 275, 860 305 S 1420 190, 1750 195"); }
+}
+@keyframes waveA2 {
+  from { d: path("M -80 620 C 260 700, 540 520, 900 610 S 1460 740, 1720 640"); }
+  to   { d: path("M -80 580 C 260 645, 540 575, 900 555 S 1460 685, 1720 685"); }
+}
+@keyframes waveA3 {
+  from { d: path("M 200 -60 C 340 260, 240 520, 430 820 S 620 980, 700 1100"); }
+  to   { d: path("M 245 -60 C 300 285, 300 495, 475 795 S 645 955, 675 1100"); }
+}
+@keyframes waveB1 {
+  from { d: path("M 1700 120 C 1320 260, 1080 140, 780 360 S 320 660, -80 560"); }
+  to   { d: path("M 1700 160 C 1320 205, 1080 195, 780 315 S 320 605, -80 605"); }
+}
+@keyframes waveB2 {
+  from { d: path("M 1750 820 C 1380 700, 1150 900, 820 780 S 380 640, 60 860"); }
+  to   { d: path("M 1750 775 C 1380 745, 1150 850, 820 825 S 380 695, 60 815"); }
+}
+
+.bg-net g > g { animation: dotsTwinkle 9s ease-in-out infinite alternate; }
+.bg-net--b g > g { animation-duration: 12s; animation-delay: -5s; }
+
+@keyframes dotsTwinkle {
+  from { opacity: .12; }
+  to   { opacity: .28; }
 }
 
 img { max-width: 100%; height: auto; }
@@ -203,11 +245,14 @@ img { max-width: 100%; height: auto; }
    Main navigation (dropdowns on hover/focus-within; plain links < 720px)
    -------------------------------------------------------------------------- */
 
-.main-nav { flex: 1 1 auto; }
+.main-nav {
+  flex: 1 1 auto;
+  margin-right: 12px;
+}
 
 .main-nav > ul {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end; /* links sit beside the demo button, not centered */
   gap: 4px;
   list-style: none;
   margin: 0;
@@ -244,7 +289,8 @@ img { max-width: 100%; height: auto; }
 .dd {
   position: absolute;
   top: calc(100% + 6px);
-  left: 0;
+  left: auto;
+  right: 0; /* right-anchored: the nav now lives at the right edge */
   min-width: 320px;
   margin: 0;
   padding: 8px;
@@ -285,6 +331,56 @@ img { max-width: 100%; height: auto; }
   .nav-link { padding: 10px 10px; font-size: 14px; }
   .nav-link .nav-chev { display: none; }
   .head-row > .btn { display: none; } /* nav wins the narrow header; CTA stays in page */
+}
+
+/* Language switch pill */
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  padding: 8px 10px;
+  margin-left: 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font: 700 12.5px/1 var(--font-ui);
+  letter-spacing: .06em;
+  color: var(--ink-mute);
+  text-decoration: none;
+  transition: color .15s, border-color .15s, background-color .15s;
+}
+.lang-switch:hover { color: var(--red); border-color: var(--red); background: var(--red-tint); }
+
+@media (max-width: 719.98px) {
+  .lang-switch { margin-left: 4px; }
+}
+
+/* --------------------------------------------------------------------------
+   Curtain scroll (homepage, desktop): the hero + stack pin in place and the
+   sections below rise up over them. --pin-top is set from JS so a region
+   taller than the viewport scrolls through first, then pins.
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  .pin-region {
+    position: sticky;
+    top: var(--pin-top, 0px);
+    z-index: 0;
+  }
+  .curtain {
+    position: relative;
+    z-index: 2;
+    background: #fff;
+    border-radius: 28px 28px 0 0;
+    overflow: hidden; /* safe: no 3D scene inside the curtain */
+    box-shadow: 0 -22px 48px rgba(48, 45, 45, .10);
+  }
+  .curtain .badges { border-top: 0; }
+  .site-foot {
+    position: relative;
+    z-index: 2;
+    background: #fff;
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -1388,6 +1484,7 @@ body.page-hidden .d-led {
   .slab-pos.on .slab-lift { transform: none; } /* the red aura carries the active state instead */
 
   .bg-blob, .bg-net--a, .bg-net--b,
+  .bg-net path, .bg-net g > g,
   .slab-pos[data-id="edge"] .d-led {
     animation: none;
   }

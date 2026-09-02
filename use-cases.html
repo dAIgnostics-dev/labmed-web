@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Use cases — dAIgnostics</title>
+  <meta name="description" content="dAIgnostics platform use cases in practice: radiology reporting, a digital therapy list, automated physician scheduling, pathology archive modernization and biosignal diagnostics.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="alternate" hreflang="en" href="use-cases.html">
+  <link rel="alternate" hreflang="hr" href="hr/primjene.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="bg" aria-hidden="true">
+  <span class="bg-blob bg-blob--red"></span>
+  <span class="bg-blob bg-blob--blue"></span>
+  <svg class="bg-net bg-net--a" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" focusable="false" aria-hidden="true">
+    <g stroke="#8FA3C4" fill="#8FA3C4">
+      <path d="M -100 180 C 300 80, 520 340, 860 260 S 1420 120, 1750 240" fill="none" stroke-width="1.4" opacity=".14"/>
+      <path d="M -80 620 C 260 700, 540 520, 900 610 S 1460 740, 1720 640" fill="none" stroke-width="1.2" opacity=".11"/>
+      <g opacity=".2">
+        <circle cx="298" cy="105" r="2.4"/><circle cx="560" cy="322" r="1.8"/><circle cx="866" cy="258" r="2.6"/>
+        <circle cx="1180" cy="170" r="1.7"/><circle cx="270" cy="676" r="2.1"/><circle cx="905" cy="612" r="2.5"/>
+      </g>
+    </g>
+  </svg>
+  <svg class="bg-net bg-net--b" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" focusable="false" aria-hidden="true">
+    <g stroke="#E5A9B4" fill="#E5A9B4">
+      <path d="M 1700 120 C 1320 260, 1080 140, 780 360 S 320 660, -80 560" fill="none" stroke-width="1.4" opacity=".13"/>
+      <g opacity=".18">
+        <circle cx="1324" cy="256" r="2.4"/><circle cx="786" cy="358" r="2.7"/><circle cx="420" cy="560" r="1.9"/>
+      </g>
+    </g>
+  </svg>
+</div>
+
+<header class="site-head">
+  <div class="container head-row">
+    <a class="brand" href="index.html" aria-label="dAIgnostics — home">
+      <img src="assets/daignostics-logo.svg" alt="dAIgnostics" class="brand-logo" width="153" height="36">
+    </a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <ul>
+        <li class="has-dd">
+          <a class="nav-link" href="solutions.html">Solutions
+            <svg class="nav-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <ul class="dd">
+            <li><a href="solutions.html#health-studio">Health Studio — diagnostics platform</a></li>
+            <li><a href="solutions.html#dai-edge">dAI Edge — data sovereignty</a></li>
+            <li><a href="solutions.html#ai-reporting">AI-assisted reporting</a></li>
+            <li><a href="solutions.html#cezih">National connectivity (CEZIH)</a></li>
+            <li><a href="solutions.html#operations">Hospital resource optimization</a></li>
+          </ul>
+        </li>
+        <li class="has-dd">
+          <a class="nav-link" href="use-cases.html" aria-current="page">Use cases
+            <svg class="nav-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <ul class="dd">
+            <li><a href="#radiology">Radiology report drafts in seconds</a></li>
+            <li><a href="#therapy-list">Digital therapy list</a></li>
+            <li><a href="#scheduling">Automated physician scheduling</a></li>
+            <li><a href="#pathology">Pathology archive modernization</a></li>
+            <li><a href="#biosignals">From biosignals to reports</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <a class="btn btn-ghost btn-small" href="index.html#contact">Request a demo</a>
+    <a class="lang-switch" href="hr/primjene.html" hreflang="hr" lang="hr" aria-label="Hrvatska verzija">HR</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero subhero container">
+    <p class="eyebrow">Use cases</p>
+    <h1 class="hero-title">LabMed in <span class="accent">practice</span></h1>
+    <p class="lede">Concrete problems from clinics, laboratories and hospitals — and how
+      the layers of the dAI platform solve them in everyday work.</p>
+  </section>
+
+  <div class="page-sections container">
+
+    <section class="sol" id="radiology" aria-labelledby="t-radiology">
+      <p class="sol-kicker">Use case 01 · Radiology</p>
+      <h2 class="sol-title" id="t-radiology">Radiology report drafts in seconds, in the local language</h2>
+      <ul class="layer-badges" aria-label="Layers used">
+        <li class="lb lb-datahub"><i aria-hidden="true"></i>dAI DataHub</li>
+        <li class="lb lb-inference"><i aria-hidden="true"></i>dAI Inference</li>
+        <li class="lb lb-clarity"><i aria-hidden="true"></i>dAI Clarity</li>
+      </ul>
+      <div class="uc-block">
+        <span class="uc-label">Challenge</span>
+        <p>Radiologists spend significant time writing reports and manually hunting for comparable
+          prior cases — keyword search misses cases described with different terminology.</p>
+      </div>
+      <div class="uc-block">
+        <span class="uc-label">Solution</span>
+        <p>The system semantically ranks similar prior cases from the institution's own archive and
+          assembles a structured report draft grounded in them. The physician reviews, corrects and
+          signs the draft — and every corrected report immediately enriches the knowledge base.
+          Everything runs locally; no data leaves the institution.</p>
+      </div>
+      <ul class="points">
+        <li>Search by meaning: "blood in urine" also finds reports labelled "haematuria" — a multilingual model running locally, no API key</li>
+        <li>Report drafts faithful to the institution's style and terminology (abdominal CT, CT urography, pelvic CT)</li>
+        <li>Physician in the loop: the draft is explicitly a proposal for review, correction and signature</li>
+        <li>Anamnesis summarized into 3–6 clinical bullet points; pathological findings and measurements first</li>
+      </ul>
+      <p class="sol-note"><span class="status-chip">Pilot</span></p>
+    </section>
+
+    <section class="sol" id="therapy-list" aria-labelledby="t-therapy">
+      <p class="sol-kicker">Use case 02 · Specialty clinic</p>
+      <h2 class="sol-title" id="t-therapy">A digital therapy list: from paper to an auditable record</h2>
+      <ul class="layer-badges" aria-label="Layers used">
+        <li class="lb lb-edge"><i aria-hidden="true"></i>dAI Edge</li>
+        <li class="lb lb-clarity"><i aria-hidden="true"></i>dAI Clarity</li>
+      </ul>
+      <div class="uc-block">
+        <span class="uc-label">Challenge</span>
+        <p>Patient therapy was tracked on a paper form and a ward Word document — no automatic safety
+          checks, hard to read, and no audit trail.</p>
+      </div>
+      <div class="uc-block">
+        <span class="uc-label">Solution</span>
+        <p>The medication process was digitized from admission to discharge: a nurse photographs the
+          handwritten form, AI handwriting recognition (with mandatory human confirmation of every
+          field) captures the existing therapy, the physician reconciles and prescribes with a PIN
+          e-signature, and administrations are recorded at the bedside — even offline.</p>
+      </div>
+      <ul class="points">
+        <li>Handwriting recognition with a confidence threshold and mandatory human confirmation per field; the raw result is archived for traceability</li>
+        <li>Automatic allergy alerts checked both in the UI and on the server, with permanently logged overrides</li>
+        <li>Server-side PIN e-signature for reconciliation, prescribing and discontinuation; an append-only audit trail</li>
+        <li>Offline-first operation (local cache + sync) and GDPR-compliant EU hosting</li>
+      </ul>
+      <p class="sol-note"><span class="status-chip">Demonstration environment</span> Shown on fictitious data.</p>
+    </section>
+
+    <section class="sol" id="scheduling" aria-labelledby="t-scheduling">
+      <p class="sol-kicker">Use case 03 · Specialty cardiovascular hospital</p>
+      <h2 class="sol-title" id="t-scheduling">Automated monthly physician scheduling</h2>
+      <ul class="layer-badges" aria-label="Layers used">
+        <li class="lb lb-inference"><i aria-hidden="true"></i>dAI Inference</li>
+        <li class="lb lb-clarity"><i aria-hidden="true"></i>dAI Clarity</li>
+      </ul>
+      <div class="uc-block">
+        <span class="uc-label">Challenge</span>
+        <p>The monthly physician schedule across multiple sites and duty posts — ward, outpatient
+          clinics, the catheterization lab, on-call shifts — was assembled by hand in spreadsheets:
+          slow, error-prone, and with no guarantee that insurer slots and hour quotas were honoured.</p>
+      </div>
+      <div class="uc-block">
+        <span class="uc-label">Solution</span>
+        <p>An optimization solver generates an hour-by-hour schedule under hard rules (competencies,
+          hour quotas, insurer windows, travel between cities) and layered priorities. When a slot
+          stays uncovered, the system explains why and proposes concrete measures; for sick leave it
+          automatically ranks substitutes with justification.</p>
+      </div>
+      <ul class="points">
+        <li>A physician × duty-post competency matrix (allowed / preferred / forbidden) and insurer-contracted priority windows</li>
+        <li>Uncovered-slot diagnostics with a ladder of relaxations and concrete proposals</li>
+        <li>Instant re-solving of a published schedule on absences, with versioning and change markers</li>
+        <li>A KPI dashboard: coverage without manual intervention, time to a confirmed substitution</li>
+      </ul>
+      <p class="sol-note"><span class="status-chip">Standalone application</span></p>
+    </section>
+
+    <section class="sol" id="pathology" aria-labelledby="t-pathology">
+      <p class="sol-kicker">Use case 04 · Veterinary pathology institute</p>
+      <h2 class="sol-title" id="t-pathology">Rescuing and modernizing a pathology archive</h2>
+      <ul class="layer-badges" aria-label="Layers used">
+        <li class="lb lb-datahub"><i aria-hidden="true"></i>dAI DataHub</li>
+        <li class="lb lb-inference"><i aria-hidden="true"></i>dAI Inference</li>
+        <li class="lb lb-clarity"><i aria-hidden="true"></i>dAI Clarity</li>
+      </ul>
+      <div class="uc-block">
+        <span class="uc-label">Challenge</span>
+        <p>After a ransomware attack, a veterinary pathology institute was left with a damaged legacy
+          database of more than 51,000 examination records — and no modern system for daily work.</p>
+      </div>
+      <div class="uc-block">
+        <span class="uc-label">Solution</span>
+        <p>The data was forensically recovered and turned into a secure, GDPR-compliant application:
+          a searchable archive, structured report forms per examination type (necropsy,
+          histopathology, cytology), image management, live voice dictation and AI report drafts —
+          with inference running exclusively within the EU.</p>
+      </div>
+      <ul class="points">
+        <li>Server-side search and filtering across 51,000+ records: diagnosis, findings, owner, examination type, clinician, period</li>
+        <li>AI drafts of structured reports (header, sections with description and diagnosis, comment)</li>
+        <li>Live voice dictation of reports (streaming transcription)</li>
+        <li>A complete GDPR package: right to erasure (Art. 17), data minimization, retention automation</li>
+      </ul>
+      <p class="sol-note"><span class="status-chip">Delivered</span> A related capability in the same vertical: visual-similarity search across medical images.</p>
+    </section>
+
+    <section class="sol" id="biosignals" aria-labelledby="t-biosignals">
+      <p class="sol-kicker">Use case 05 · Clinical biosignal diagnostics</p>
+      <h2 class="sol-title" id="t-biosignals">From a raw signal to a report in the patient's portal</h2>
+      <ul class="layer-badges" aria-label="Layers used">
+        <li class="lb lb-inference"><i aria-hidden="true"></i>dAI Inference</li>
+        <li class="lb lb-clarity"><i aria-hidden="true"></i>dAI Clarity</li>
+      </ul>
+      <div class="uc-block">
+        <span class="uc-label">Challenge</span>
+        <p>A physician holding the result of a spectral biosignal measurement needs a fast,
+          transparent ML assessment and a report they can share with the patient — without
+          assembling it by hand.</p>
+      </div>
+      <div class="uc-block">
+        <span class="uc-label">Solution</span>
+        <p>The physician uploads the measurements, an ensemble of independent ML models votes on the
+          classification in parallel — showing confidence and each model's vote — generative AI
+          composes the clinical narrative, and the PDF report lands in the patient's own secure
+          portal.</p>
+      </div>
+      <ul class="points">
+        <li>An explainable ensemble instead of one black box: majority voting with a per-model breakdown and averaged probabilities</li>
+        <li>A built-in patient portal: each patient sees only their own reports (fine-grained authorization)</li>
+        <li>An AI-generated narrative report + PDF with a time-limited download link and a listen option</li>
+        <li>Serverless architecture with patient management and one-click patient account provisioning</li>
+      </ul>
+      <p class="sol-note"><span class="status-chip">Demonstration environment</span> Shown on fictitious data.</p>
+    </section>
+
+  </div>
+
+  <section class="cta container" id="contact">
+    <h2 class="cta-title">Facing a similar challenge?</h2>
+    <p class="cta-sub">Describe your workflow — we'll show you how the layers of the
+      LabMed stack solve it.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="mailto:info@daignostics.info">Request a demo</a>
+      <a class="btn btn-ghost" href="solutions.html">See the solutions</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="container foot-row">
+    <img src="assets/daignostics-logo.svg" alt="" class="foot-logo" width="110" height="26">
+    <p><a href="solutions.html">Solutions</a> · <a href="use-cases.html">Use cases</a> · © 2026 dAIgnostics · <a href="https://daignostics.info">daignostics.info</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
