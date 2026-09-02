@@ -80,20 +80,20 @@ body {
 .bg-blob--red {
   top: -18vmax;
   right: -12vmax;
-  background: radial-gradient(circle at 40% 40%, rgba(226, 30, 58, .07), transparent 65%);
-  animation: blobDrift 46s ease-in-out infinite alternate;
+  background: radial-gradient(circle at 40% 40%, rgba(226, 30, 58, .09), transparent 65%);
+  animation: blobDrift 24s ease-in-out infinite alternate;
 }
 
 .bg-blob--blue {
   bottom: -20vmax;
   left: -14vmax;
-  background: radial-gradient(circle at 55% 45%, rgba(36, 103, 224, .07), transparent 65%);
-  animation: blobDrift 58s ease-in-out infinite alternate-reverse;
+  background: radial-gradient(circle at 55% 45%, rgba(36, 103, 224, .09), transparent 65%);
+  animation: blobDrift 32s ease-in-out infinite alternate-reverse;
 }
 
 @keyframes blobDrift {
   from { transform: translate3d(0, 0, 0) scale(1); }
-  to   { transform: translate3d(-6vmax, 4vmax, 0) scale(1.12); }
+  to   { transform: translate3d(-9vmax, 6vmax, 0) scale(1.18); }
 }
 
 .bg-net {
@@ -105,12 +105,12 @@ body {
 }
 
 /* the SVG roots animate (compositor-friendly), never their inner <g> */
-.bg-net--a { animation: netDrift 70s ease-in-out infinite alternate; }
-.bg-net--b { animation: netDrift 90s ease-in-out infinite alternate-reverse; }
+.bg-net--a { animation: netDrift 30s ease-in-out infinite alternate; }
+.bg-net--b { animation: netDrift 42s ease-in-out infinite alternate-reverse; }
 
 @keyframes netDrift {
   from { transform: translate3d(0, 0, 0); }
-  to   { transform: translate3d(-38px, 22px, 0); }
+  to   { transform: translate3d(-70px, 42px, 0); }
 }
 
 body.page-hidden .bg-blob,
@@ -124,39 +124,39 @@ body.page-hidden .bg-net g > g {
    structurally identical beziers (Chromium/Firefox; Safari falls back to the
    whole-layer drift). Dots twinkle via group opacity. */
 
-.bg-net--a path:nth-of-type(1) { animation: waveA1 16s ease-in-out infinite alternate; }
-.bg-net--a path:nth-of-type(2) { animation: waveA2 20s ease-in-out infinite alternate; animation-delay: -6s; }
-.bg-net--a path:nth-of-type(3) { animation: waveA3 18s ease-in-out infinite alternate; animation-delay: -11s; }
-.bg-net--b path:nth-of-type(1) { animation: waveB1 17s ease-in-out infinite alternate; animation-delay: -4s; }
-.bg-net--b path:nth-of-type(2) { animation: waveB2 21s ease-in-out infinite alternate; animation-delay: -9s; }
+.bg-net--a path:nth-of-type(1) { animation: waveA1 8s ease-in-out infinite alternate; }
+.bg-net--a path:nth-of-type(2) { animation: waveA2 10s ease-in-out infinite alternate; animation-delay: -3s; }
+.bg-net--a path:nth-of-type(3) { animation: waveA3 9s ease-in-out infinite alternate; animation-delay: -6s; }
+.bg-net--b path:nth-of-type(1) { animation: waveB1 8.5s ease-in-out infinite alternate; animation-delay: -2s; }
+.bg-net--b path:nth-of-type(2) { animation: waveB2 11s ease-in-out infinite alternate; animation-delay: -5s; }
 
 @keyframes waveA1 {
   from { d: path("M -100 180 C 300 80, 520 340, 860 260 S 1420 120, 1750 240"); }
-  to   { d: path("M -100 215 C 300 150, 520 275, 860 305 S 1420 190, 1750 195"); }
+  to   { d: path("M -100 255 C 300 185, 520 250, 860 335 S 1420 215, 1750 165"); }
 }
 @keyframes waveA2 {
   from { d: path("M -80 620 C 260 700, 540 520, 900 610 S 1460 740, 1720 640"); }
-  to   { d: path("M -80 580 C 260 645, 540 575, 900 555 S 1460 685, 1720 685"); }
+  to   { d: path("M -80 550 C 260 615, 540 605, 900 525 S 1460 655, 1720 715"); }
 }
 @keyframes waveA3 {
   from { d: path("M 200 -60 C 340 260, 240 520, 430 820 S 620 980, 700 1100"); }
-  to   { d: path("M 245 -60 C 300 285, 300 495, 475 795 S 645 955, 675 1100"); }
+  to   { d: path("M 280 -60 C 275 305, 335 475, 505 775 S 665 935, 655 1100"); }
 }
 @keyframes waveB1 {
   from { d: path("M 1700 120 C 1320 260, 1080 140, 780 360 S 320 660, -80 560"); }
-  to   { d: path("M 1700 160 C 1320 205, 1080 195, 780 315 S 320 605, -80 605"); }
+  to   { d: path("M 1700 190 C 1320 170, 1080 230, 780 290 S 320 575, -80 640"); }
 }
 @keyframes waveB2 {
   from { d: path("M 1750 820 C 1380 700, 1150 900, 820 780 S 380 640, 60 860"); }
-  to   { d: path("M 1750 775 C 1380 745, 1150 850, 820 825 S 380 695, 60 815"); }
+  to   { d: path("M 1750 745 C 1380 775, 1150 815, 820 855 S 380 715, 60 785"); }
 }
 
-.bg-net g > g { animation: dotsTwinkle 9s ease-in-out infinite alternate; }
-.bg-net--b g > g { animation-duration: 12s; animation-delay: -5s; }
+.bg-net g > g { animation: dotsTwinkle 4.5s ease-in-out infinite alternate; }
+.bg-net--b g > g { animation-duration: 6s; animation-delay: -2.5s; }
 
 @keyframes dotsTwinkle {
-  from { opacity: .12; }
-  to   { opacity: .28; }
+  from { opacity: .10; }
+  to   { opacity: .38; }
 }
 
 img { max-width: 100%; height: auto; }
@@ -221,6 +221,9 @@ img { max-width: 100%; height: auto; }
    -------------------------------------------------------------------------- */
 
 .site-head {
+  position: sticky;
+  top: 0;
+  z-index: 50;
   border-bottom: 1px solid var(--line);
   background: #fff;
 }
@@ -364,9 +367,14 @@ img { max-width: 100%; height: auto; }
 @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
   .pin-region {
     position: sticky;
-    top: var(--pin-top, 0px);
+    top: var(--pin-top, 72px); /* below the sticky header: pinned from the very first scroll */
     z-index: 0;
   }
+  /* tighten the vertical rhythm so hero + stack fit a typical desktop
+     viewport: the region then pins at top:0 and the curtain rises from the
+     very first scroll, with nothing moving first */
+  .pin-region .hero { padding-block: 34px 0; }
+  .pin-region .stack-viz { padding-block: 10px 44px; }
   .curtain {
     position: relative;
     z-index: 2;
@@ -374,6 +382,12 @@ img { max-width: 100%; height: auto; }
     border-radius: 28px 28px 0 0;
     overflow: hidden; /* safe: no 3D scene inside the curtain */
     box-shadow: 0 -22px 48px rgba(48, 45, 45, .10);
+    /* at least a full viewport tall: the curtain fully covers the pinned
+       region before its sticky travel runs out at the end of the document */
+    min-height: calc(100vh - 72px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   .curtain .badges { border-top: 0; }
   .site-foot {

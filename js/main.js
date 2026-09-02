@@ -253,11 +253,14 @@
     });
   }
 
-  // Curtain scroll: a pin region taller than the viewport gets a negative
-  // sticky top so it scrolls through first, then pins while sections rise.
+  // Curtain scroll: the region pins right below the sticky header so nothing
+  // moves from the very first scroll. If it is taller than the space under
+  // the header, it gets a negative offset and scrolls through first.
   function updatePin() {
     if (!pinRegion) return;
-    var top = Math.min(0, window.innerHeight - pinRegion.offsetHeight);
+    var head = document.querySelector('.site-head');
+    var headH = head ? head.offsetHeight : 0;
+    var top = headH + Math.min(0, (window.innerHeight - headH) - pinRegion.offsetHeight);
     pinRegion.style.setProperty('--pin-top', top + 'px');
   }
 
