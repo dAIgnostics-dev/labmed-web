@@ -359,21 +359,34 @@ img { max-width: 100%; height: auto; }
 }
 
 /* --------------------------------------------------------------------------
-   Curtain scroll (homepage, desktop): once the intro has scrolled past, the
-   stack heading + stack pin in place and the sections below rise up over
-   them. --pin-top is set from JS so a region taller than the space under the
-   header gets a negative offset and scrolls through first, then pins.
+   Curtain scroll (homepage, desktop): the intro scrolls until its bottom
+   meets the viewport bottom and pins; the stack panel rises over it and pins
+   in turn; then the badges + CTA curtain rises over the stack. --pin-top is
+   set from JS per [data-pin] element, so a region taller than the space
+   under the header gets a negative offset and scrolls through first.
    -------------------------------------------------------------------------- */
 
 @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  html.js .intro { /* JS-gated: without --pin-top from JS it would pin at once */
+    position: sticky;
+    top: var(--pin-top, 72px);
+    z-index: 0;
+  }
   .pin-region {
     position: sticky;
     top: var(--pin-top, 72px); /* just below the sticky header */
-    z-index: 0;
+    z-index: 1;
+    /* white panel that rises over the pinned intro; at least a viewport tall
+       so nothing of the intro shows below it once pinned.
+       NO overflow:hidden here — the 3D scene lives inside (FLATTENING RULES) */
+    min-height: calc(100vh - 72px);
+    background: #fff;
+    border-radius: 28px 28px 0 0;
+    box-shadow: 0 -22px 48px rgba(48, 45, 45, .10);
   }
   /* tighten the vertical rhythm so heading + stack fit under the header on a
-     typical desktop viewport (incl. 1280x720), so the region pins whole */
-  .pin-region .hero { padding-block: 16px 0; }
+     typical desktop viewport (incl. 1280x720), so the panel pins whole */
+  .pin-region .hero { padding-block: 28px 0; }
   .pin-region .hint { margin-top: 12px; }
   .pin-region .stack-viz { padding-block: 8px 24px; }
   .curtain {
@@ -381,7 +394,7 @@ img { max-width: 100%; height: auto; }
     z-index: 2;
     /* dwell: the pinned stack stays fully uncovered for a stretch of scroll
        before the curtain starts to rise over it, so it can be explored */
-    margin-top: 30vh;
+    margin-top: 24vh;
     background: #fff;
     border-radius: 28px 28px 0 0;
     overflow: hidden; /* safe: no 3D scene inside the curtain */
@@ -579,7 +592,7 @@ img { max-width: 100%; height: auto; }
 
 /* Hero entrance (pure CSS, plays on load) */
 .eyebrow, .hero-title, .lede, .hint,
-.intro-tagline, .intro-lede, .intro-actions, .intro-media {
+.intro-tagline, .intro-lede, .intro-actions, .intro-media__frame {
   /* backwards, not both: the end state equals the natural style, and a
      filled-forward transform would keep .intro-media a stacking context
      that paints the photo's shadow over the feature cards below */
@@ -589,7 +602,7 @@ img { max-width: 100%; height: auto; }
 .lede, .intro-tagline { animation-delay: .16s; }
 .hint, .intro-lede { animation-delay: .24s; }
 .intro-actions { animation-delay: .32s; }
-.intro-media { animation-delay: .2s; }
+.intro-media__frame { animation-delay: .2s; }
 
 @keyframes heroIn {
   from { opacity: 0; transform: translateY(14px); }
@@ -599,27 +612,36 @@ img { max-width: 100%; height: auto; }
 }
 
 /* --------------------------------------------------------------------------
-   Intro — headline and copy beside the hero photo, then the feature grid.
-   Lives ABOVE the pin-region: the page opens on text + image and the
-   interactive stack follows on scroll.
+   Intro — copy on the left over a large hero photo that sits in the
+   background, masked so it fades toward the text; the feature grid follows.
+   From 900px the photo is sticky inside the intro and recedes (scales down,
+   fades) as the copy and cards scroll over it: --hero-p (0..1) is set by JS
+   from how far the intro has scrolled. The intro lives ABOVE the pin-region,
+   which rises over it as a curtain on desktop.
    -------------------------------------------------------------------------- */
 
-.intro { padding-block: 64px 24px; }
+.intro {
+  position: relative;
+  padding-block: 0 48px;
+  --hero-p: 0;
+}
 
-.intro-grid {
-  display: grid;
-  gap: 32px;
+.intro-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.intro-hero {
+  display: flex;
   align-items: center;
+  min-height: calc(100vh - 72px);
+  padding-block: 56px 48px;
 }
 
-@media (min-width: 900px) {
-  .intro-grid {
-    grid-template-columns: minmax(0, 7fr) minmax(0, 6fr);
-    gap: 56px;
-  }
+.intro-copy {
+  min-width: 0;
+  max-width: 620px;
 }
-
-.intro-copy { min-width: 0; }
 
 .intro-tagline {
   margin: 18px 0 0;
@@ -646,23 +668,82 @@ img { max-width: 100%; height: auto; }
   margin-top: 28px;
 }
 
+/* Photo layer: spans the whole intro; the frame inside holds the picture */
 .intro-media {
-  margin: 0;
-  min-width: 0;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
 }
 
-.intro-media img {
+.intro-media__frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: min(60vh, 520px);
+  opacity: .85;
+  -webkit-mask-image: linear-gradient(to bottom, #000 30%, transparent 96%);
+  mask-image: linear-gradient(to bottom, #000 30%, transparent 96%);
+}
+
+.intro-media__frame img {
   display: block;
   width: 100%;
-  height: auto;
-  border-radius: 18px;
-  box-shadow: 0 24px 60px rgba(48, 45, 45, .16);
+  height: 100%;
+  object-fit: cover;
+  object-position: 55% 40%;
+}
+
+@media (max-width: 899.98px) {
+  /* photo as a band across the top; the copy starts over its faded lower part */
+  .intro-hero {
+    min-height: 0;
+    align-items: flex-start;
+    padding-top: min(44vh, 380px);
+  }
+}
+
+@media (min-width: 900px) {
+  .intro-copy { max-width: 46%; }
+
+  .intro-media__frame {
+    position: sticky;
+    top: 72px;
+    left: auto;
+    right: auto;
+    width: 64%;
+    height: calc(100vh - 72px);
+    margin-left: auto; /* right-anchored */
+    opacity: 1;
+    transform-origin: 82% 26%;
+    will-change: transform, opacity;
+    /* fade toward the text (left) and softly at the top and bottom */
+    -webkit-mask-image:
+      linear-gradient(to right, transparent 0%, #000 42%),
+      linear-gradient(to bottom, transparent 0%, #000 14%, #000 80%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(to right, transparent 0%, #000 42%),
+      linear-gradient(to bottom, transparent 0%, #000 14%, #000 80%, transparent 100%);
+    mask-composite: intersect;
+  }
+}
+
+@media (min-width: 900px) and (prefers-reduced-motion: no-preference) {
+  /* recede as the intro scrolls: smaller and fainter, toward the top-right */
+  .intro-media__frame {
+    transform: scale(calc(1 - 0.3 * var(--hero-p)));
+    opacity: calc(1 - 0.55 * var(--hero-p));
+  }
+  /* the copy fades once it is mostly scrolled past (from ~40% travel), so the
+     pinned intro shows no stray button peeking out under the header */
+  .intro-copy { opacity: calc(1.6 - 1.6 * var(--hero-p)); }
 }
 
 .feature-grid {
   display: grid;
   gap: 16px;
-  margin-top: 56px;
 }
 
 @media (min-width: 720px) {
@@ -1578,9 +1659,8 @@ body.page-hidden .d-led {
   .container { padding-inline: 20px; }
   .hero { padding-block: 52px 4px; }
   .lede { font-size: 15.5px; }
-  .intro { padding-block: 40px 8px; }
+  .intro { padding-block: 0 32px; }
   .intro-lede { font-size: 15.5px; }
-  .feature-grid { margin-top: 40px; }
   .slab-label { font-size: 15px; }
   .cta { padding-block: 60px; }
   .btn { width: min(100%, 340px); }
@@ -1595,7 +1675,7 @@ body.page-hidden .d-led {
   html { scroll-behavior: auto; }
 
   .eyebrow, .hero-title, .lede, .hint,
-  .intro-tagline, .intro-lede, .intro-actions, .intro-media {
+  .intro-tagline, .intro-lede, .intro-actions, .intro-media__frame {
     animation-duration: .15s;
     animation-delay: 0s;
   }

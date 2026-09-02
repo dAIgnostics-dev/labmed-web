@@ -13,7 +13,8 @@
 
   var scene = section.querySelector('.scene');
   var svg = section.querySelector('.leaders');
-  var pinRegion = document.querySelector('.pin-region');
+  var pinEls = Array.prototype.slice.call(document.querySelectorAll('[data-pin]'));
+  var intro = document.querySelector('.intro');
 
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   var desktop = window.matchMedia('(min-width: 1024px)');
@@ -253,19 +254,43 @@
     });
   }
 
-  // Curtain scroll: the region pins right below the sticky header so nothing
-  // moves from the very first scroll. If it is taller than the space under
-  // the header, it gets a negative offset and scrolls through first.
+  // Curtain scroll: each [data-pin] region (intro, stack panel) pins right
+  // below the sticky header; one taller than the space under the header gets
+  // a negative offset so it scrolls through first and pins with its bottom
+  // at the viewport bottom.
   function updatePin() {
-    if (!pinRegion) return;
     var head = document.querySelector('.site-head');
     var headH = head ? head.offsetHeight : 0;
-    var top = headH + Math.min(0, (window.innerHeight - headH) - pinRegion.offsetHeight);
-    pinRegion.style.setProperty('--pin-top', top + 'px');
+    pinEls.forEach(function (el) {
+      var top = headH + Math.min(0, (window.innerHeight - headH) - el.offsetHeight);
+      el.style.setProperty('--pin-top', top + 'px');
+    });
   }
+
+  // Hero photo recede: --hero-p goes 0 -> 1 as the intro scrolls from rest
+  // to the point where it pins (bottom at the viewport bottom); CSS scales
+  // and fades the sticky photo frame from it.
+  var heroQueued = false;
+  function updateHero() {
+    heroQueued = false;
+    if (!intro) return;
+    if (reduced.matches) { intro.style.setProperty('--hero-p', '0'); return; }
+    var head = document.querySelector('.site-head');
+    var headH = head ? head.offsetHeight : 0;
+    var travel = Math.max(intro.offsetHeight - (window.innerHeight - headH), Math.round(window.innerHeight * 0.5));
+    var moved = Math.min(Math.max(headH - intro.getBoundingClientRect().top, 0), travel);
+    intro.style.setProperty('--hero-p', (moved / travel).toFixed(4));
+  }
+  function queueHero() {
+    if (heroQueued) return;
+    heroQueued = true;
+    window.requestAnimationFrame(updateHero);
+  }
+  window.addEventListener('scroll', queueHero, { passive: true });
 
   function measure() {
     updatePin();
+    updateHero();
     if (!desktop.matches) return;
     var sr = section.getBoundingClientRect();
     if (sr.width === 0) return;
@@ -341,10 +366,13 @@
   }
 
   buildLeaders();
+  updatePin();
+  updateHero();
 
   if ('ResizeObserver' in window) {
     var ro = new ResizeObserver(queueMeasure);
     ro.observe(section);
+    if (intro) ro.observe(intro); // its height sets the intro's pin offset and the hero travel
     ro.observe(section.querySelector('.scene-wrap')); // --slab is vh-bound: height-only resizes move anchors
     IDS.forEach(function (id) { ro.observe(els[id].card); });
   } else {

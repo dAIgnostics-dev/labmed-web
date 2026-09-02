@@ -85,8 +85,14 @@
 </header>
 
 <main>
-  <section class="intro container" aria-labelledby="hero-title">
-    <div class="intro-grid">
+  <section class="intro" aria-labelledby="hero-title" data-pin>
+    <div class="intro-media">
+      <div class="intro-media__frame">
+        <img src="assets/hero-labmed.jpg" alt="A laboratory scientist pipetting a sample beside a microscope, with analysis dashboards on the screen behind them" width="1248" height="832" fetchpriority="high" decoding="async">
+      </div>
+    </div>
+    <div class="container intro-inner">
+    <div class="intro-hero">
       <div class="intro-copy">
         <h1 id="hero-title" class="hero-title">Lab<span class="accent">Med</span> Studio</h1>
         <p class="intro-tagline" role="doc-subtitle">One platform for everything your lab runs on</p>
@@ -96,10 +102,7 @@
           <a class="btn btn-primary" href="#contact">Request a demo</a>
         </div>
       </div>
-      <div class="intro-media">
-        <img src="assets/hero-labmed.jpg" alt="A laboratory scientist pipetting a sample beside a microscope, with analysis dashboards on the screen behind them" width="1248" height="832" fetchpriority="high" decoding="async">
-      </div>
-    </div>
+    </div><!-- /.intro-hero -->
 
     <div class="feature-grid">
       <article class="feature">
@@ -131,9 +134,10 @@
         <p>Statistical and AI processing, multimodal integration where relevant, and results presented with confidence, uncertainty and full traceability — never an unexplained score.</p>
       </article>
     </div>
+    </div><!-- /.intro-inner -->
   </section>
 
-  <div class="pin-region">
+  <div class="pin-region" data-pin>
   <section class="hero container">
     <p class="eyebrow">Platform architecture</p>
     <h2 id="stack-title" class="hero-title stack-title">The Core Stack</h2>
