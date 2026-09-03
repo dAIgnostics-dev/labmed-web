@@ -56,7 +56,7 @@ python3 -m http.server 8080
 - The Croatian landing copy (`hr/index.html` intro + feature grid) is a
   translation of the English text, not client-supplied copy — proofread it.
 
-- CTA links (`mailto:info@daignostics.info`) are placeholders — point them at
+- CTA links (`mailto:contact@daignostics.info`) are placeholders — point them at
   the real demo-request channel.
 - The Inference Engine caption uses **„verzioniranih"** (versioned); the source
   diagram said „verziranih", which means *well-versed* in Croatian.
