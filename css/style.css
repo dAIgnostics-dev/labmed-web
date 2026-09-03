@@ -348,6 +348,15 @@ img { max-width: 100%; height: auto; }
   .nav-link { padding: 8px 6px; font-size: 13px; } /* tighter so logo + nav + language pill fit ~360px */
 }
 
+@media (max-width: 349.98px) {
+  /* 320px-class phones: everything a notch smaller so nothing overlaps the mark */
+  .brand-logo { min-width: 80px; }
+  .main-nav { margin-right: 4px; }
+  .main-nav ul { gap: 0; }
+  .nav-link { padding: 8px 4px; font-size: 12.5px; }
+  .lang-switch { padding: 6px 8px; font-size: 12px; }
+}
+
 /* Language switch pill */
 .lang-switch {
   display: inline-flex;
