@@ -236,13 +236,21 @@ img { max-width: 100%; height: auto; }
   height: 72px;
 }
 
-@media (max-width: 399.98px) {
-  .brand-logo { height: 28px; }
-  .head-row .btn-small { padding: 8px 12px; font-size: 13px; }
+.brand { display: inline-flex; align-items: center; min-width: 0; }
+.brand-logo {
+  height: 36px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;        /* if the narrow header squeezes the box, the mark scales
+  object-position: left center;  instead of being squashed */
+  display: block;
 }
 
-.brand { display: inline-flex; align-items: center; }
-.brand-logo { height: 36px; width: auto; display: block; }
+@media (max-width: 399.98px) {
+  .head-row { gap: 8px; }
+  .brand-logo { height: 26px; min-width: 96px; } /* the mark never shrinks below a legible width; the nav yields instead */
+  .head-row .btn-small { padding: 8px 12px; font-size: 13px; }
+}
 
 /* --------------------------------------------------------------------------
    Main navigation (dropdowns on hover/focus-within; plain links < 720px)
@@ -334,6 +342,10 @@ img { max-width: 100%; height: auto; }
   .nav-link { padding: 10px 10px; font-size: 14px; }
   .nav-link .nav-chev { display: none; }
   .head-row > .btn { display: none; } /* nav wins the narrow header; CTA stays in page */
+}
+
+@media (max-width: 399.98px) {
+  .nav-link { padding: 8px 6px; font-size: 13px; } /* tighter so logo + nav + language pill fit ~360px */
 }
 
 /* Language switch pill */
@@ -429,7 +441,7 @@ img { max-width: 100%; height: auto; }
 .sol {
   border-top: 1px solid var(--line);
   padding: 46px 0 40px;
-  scroll-margin-top: 24px;
+  scroll-margin-top: calc(72px + 24px); /* clear the sticky header when jumped to from the dropdowns */
 }
 .sol:first-of-type { border-top: 0; padding-top: 28px; }
 
@@ -1607,6 +1619,7 @@ body.page-hidden .d-led {
 .cta {
   text-align: center;
   padding-block: 84px;
+  scroll-margin-top: 72px; /* #contact / #kontakt land below the sticky header */
 }
 
 .cta-title {
