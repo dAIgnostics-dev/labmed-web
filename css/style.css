@@ -23,7 +23,7 @@
   --bg-soft: #FAFAF9;
 
   --font-ui: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-display: 'Adarsh Sans', 'Inter', system-ui, sans-serif;
+  --font-display: 'Adarsh Sans', 'Questrial', 'Inter', system-ui, sans-serif; /* Adarsh Sans has no Č Ć Đ Š Ž: Questrial supplies matching geometric glyphs */
 
   /* Isometric geometry — breakpoints only retune these */
   --slab: clamp(220px, min(44vw, 34vh), 320px);
@@ -279,18 +279,19 @@ img { max-width: 100%; height: auto; }
   padding: 10px 14px;
   border-radius: 8px;
   font: 600 15px/1 var(--font-ui);
-  color: var(--ink);
+  color: var(--red-dark); /* brand red: reads as a menu, not as static text */
   text-decoration: none;
   transition: background-color .15s, color .15s;
 }
 
-.nav-link:hover { background: var(--bg-soft); color: var(--red); }
+.nav-link:hover,
+.nav-link:focus-visible { background: var(--bg-soft); color: var(--red); text-decoration: underline; text-underline-offset: 4px; }
 .nav-link[aria-current="page"] { color: var(--red); }
 
 .nav-link .nav-chev {
   width: 12px;
   height: 12px;
-  color: var(--ink-faint);
+  color: currentColor;
   transition: transform .18s;
 }
 
@@ -340,7 +341,10 @@ img { max-width: 100%; height: auto; }
 @media (max-width: 719.98px) {
   .dd { display: none; }
   .nav-link { padding: 10px 10px; font-size: 14px; }
-  .nav-link .nav-chev { display: none; }
+  /* no dropdowns here: the links open the pages, so the chevron points right */
+  .nav-link .nav-chev,
+  .has-dd:hover .nav-chev,
+  .has-dd:focus-within .nav-chev { display: inline-block; transform: rotate(-90deg); }
   .head-row > .btn { display: none; } /* nav wins the narrow header; CTA stays in page */
 }
 
@@ -396,6 +400,7 @@ img { max-width: 100%; height: auto; }
   .pin-region {
     position: sticky;
     top: var(--pin-top, 72px); /* just below the sticky header */
+    scroll-margin-top: 72px;   /* #platform lands exactly at the pin point */
     z-index: 1;
     /* white panel that rises over the pinned intro; at least a viewport tall
        so nothing of the intro shows below it once pinned.
@@ -689,6 +694,91 @@ img { max-width: 100%; height: auto; }
   margin-top: 28px;
 }
 
+.intro-eyebrow { margin-bottom: 12px; }
+.intro-eyebrow .brand-case { text-transform: none; } /* keep the dAIgnostics casing inside the uppercase kicker */
+
+/* B1: the pipeline in one glance, before the individual feature cards */
+.flow { margin: 4px 0 40px; }
+
+.flow-title {
+  margin: 0 0 16px;
+  font: 600 12px/1 var(--font-ui);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--red-dark);
+}
+
+.flow-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 12px 18px;
+}
+
+.flow-steps li {
+  position: relative;
+  display: grid;
+  gap: 4px;
+  padding: 14px 14px 16px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(48, 45, 45, .06);
+}
+
+/* arrow to the next step */
+.flow-steps li::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -13px;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid var(--red);
+  border-right: 2px solid var(--red);
+  transform: translateY(-50%) rotate(45deg);
+}
+.flow-steps li:last-child::after { display: none; }
+
+.flow-num { font: 700 11px/1 var(--font-ui); letter-spacing: .1em; color: var(--red); }
+.flow-name { font: 600 16px/1.2 var(--font-ui); color: var(--ink); }
+.flow-sub { font: 400 13px/1.45 var(--font-ui); color: var(--ink-mute); }
+
+@media (max-width: 1023.98px) {
+  .flow-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .flow-steps li:nth-child(3)::after { display: none; }
+}
+
+@media (max-width: 599.98px) {
+  .flow-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 16px; }
+  .flow-steps li:nth-child(3)::after { display: block; }
+  .flow-steps li:nth-child(even)::after { display: none; }
+  .flow-sub { display: none; }
+}
+
+/* B2: the feature section gets a visible end and a closing link */
+.intro-close {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 32px;
+  margin-top: 36px;
+  padding: 22px 24px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg-soft);
+}
+.intro-close p {
+  margin: 0;
+  max-width: 62ch;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
 /* Photo layer: spans the whole intro; the frame inside holds the picture */
 .intro-media {
   position: absolute;
@@ -702,7 +792,7 @@ img { max-width: 100%; height: auto; }
   top: 0;
   left: 0;
   right: 0;
-  height: min(60vh, 520px);
+  height: min(50vh, 440px);
   opacity: .85;
   -webkit-mask-image: linear-gradient(to bottom, #000 30%, transparent 96%);
   mask-image: linear-gradient(to bottom, #000 30%, transparent 96%);
@@ -721,8 +811,13 @@ img { max-width: 100%; height: auto; }
   .intro-hero {
     min-height: 0;
     align-items: flex-start;
-    padding-top: min(44vh, 380px);
+    padding-top: min(36vh, 300px);
   }
+  /* the demo button must be visible without scrolling: it moves above the lede */
+  .intro-copy { display: flex; flex-direction: column; }
+  .intro-lede { order: 1; }
+  .intro-actions { margin-top: 22px; }
+  .intro-lede:first-of-type { margin-top: 26px; }
 }
 
 @media (min-width: 900px) {
@@ -1371,6 +1466,14 @@ html.js .stack-viz:not(.is-in) .leaders { opacity: 0; }
   animation: shadowBreathe 6s ease-in-out infinite alternate;
 }
 
+/* Touch and small screens: the idle bob shimmers on mobile GPUs and reads as a
+   glitch on the top (white) layer, so the stack rests still there */
+@media (hover: none), (max-width: 1023.98px) {
+  .stack-viz.is-settled .slab-idle,
+  .stack-viz.is-settled .ground-shadow { animation: none; }
+  .stack-viz.is-settled .slab-idle { transform: translateZ(0); }
+}
+
 @keyframes idleFloat {
   from { transform: translateZ(-4px); }
   to   { transform: translateZ(4px); }
@@ -1489,10 +1592,19 @@ body.page-hidden .d-led {
 
 .card-desc {
   margin: 0 0 8px;
-  font-size: 13.5px;
+  font-size: 15px;
   line-height: 1.5;
   color: var(--ink-soft);
   transition: color .2s;
+}
+
+/* the technical one-liner moved from the card face into the open panel */
+.panel-tech {
+  margin: 0;
+  padding: 6px 0 4px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-mute);
 }
 
 .stack-viz.has-active .card:not(.is-active) .card-title,
@@ -1612,13 +1724,41 @@ body.page-hidden .d-led {
 }
 
 .chip {
-  display: inline-block;
-  padding: 8px 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px 8px 16px;
   border: 1px solid #DEDBD9;
   border-radius: 999px;
   font: 500 13px/1.3 var(--font-ui);
   color: var(--ink-mute);
   background: #fff;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: border-color .15s, color .15s, background-color .15s;
+}
+/* a small chevron says "this opens" */
+.chip::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform .18s;
+}
+.chip:hover { border-color: var(--red); color: var(--red-dark); }
+.chip.is-open { border-color: var(--red); color: var(--red-dark); background: var(--red-tint); }
+.chip.is-open::after { transform: translateY(1px) rotate(-135deg); }
+
+.chip-notes { text-align: center; }
+.chip-note {
+  max-width: 720px;
+  margin: 16px auto 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-soft);
 }
 
 /* --------------------------------------------------------------------------

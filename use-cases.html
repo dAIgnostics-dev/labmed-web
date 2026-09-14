@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Use cases — dAIgnostics</title>
+  <title>Use cases | LabMed Studio</title>
   <meta name="description" content="dAIgnostics platform use cases in practice: radiology reporting, a digital therapy list, automated physician scheduling, pathology archive modernization and biosignal diagnostics.">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="alternate" hreflang="en" href="use-cases.html">
   <link rel="alternate" hreflang="hr" href="hr/primjene.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Questrial&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -40,7 +40,7 @@
 
 <header class="site-head">
   <div class="container head-row">
-    <a class="brand" href="index.html" aria-label="dAIgnostics — home">
+    <a class="brand" href="index.html" aria-label="dAIgnostics home">
       <img src="assets/daignostics-logo.png" alt="dAIgnostics" class="brand-logo" width="151" height="36">
     </a>
     <nav class="main-nav" aria-label="Main navigation">
@@ -50,8 +50,8 @@
             <svg class="nav-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
           </a>
           <ul class="dd">
-            <li><a href="solutions.html#health-studio">Health Studio — diagnostics platform</a></li>
-            <li><a href="solutions.html#dai-edge">dAI Edge — data sovereignty</a></li>
+            <li><a href="solutions.html#health-studio">Health Studio: diagnostics platform</a></li>
+            <li><a href="solutions.html#dai-edge">dAI Edge: data sovereignty</a></li>
             <li><a href="solutions.html#ai-reporting">AI-assisted reporting</a></li>
             <li><a href="solutions.html#cezih">National connectivity (CEZIH)</a></li>
             <li><a href="solutions.html#operations">Hospital resource optimization</a></li>
@@ -80,7 +80,7 @@
   <section class="hero subhero container">
     <p class="eyebrow">Use cases</p>
     <h1 class="hero-title">LabMed in <span class="accent">practice</span></h1>
-    <p class="lede">Concrete problems from clinics, laboratories and hospitals — and how
+    <p class="lede">Concrete problems from clinics, laboratories and hospitals, and how
       the layers of the dAI platform solve them in everyday work.</p>
   </section>
 
@@ -97,17 +97,21 @@
       <div class="uc-block">
         <span class="uc-label">Challenge</span>
         <p>Radiologists spend significant time writing reports and manually hunting for comparable
-          prior cases — keyword search misses cases described with different terminology.</p>
+          prior cases; keyword search misses cases described with different terminology.</p>
       </div>
       <div class="uc-block">
         <span class="uc-label">Solution</span>
         <p>The system semantically ranks similar prior cases from the institution's own archive and
           assembles a structured report draft grounded in them. The physician reviews, corrects and
-          signs the draft — and every corrected report immediately enriches the knowledge base.
+          signs the draft, and every corrected report immediately enriches the knowledge base.
           Everything runs locally; no data leaves the institution.</p>
       </div>
+      <div class="uc-block">
+        <span class="uc-label">Impact</span>
+        <p>A structured draft in seconds instead of minutes of writing and searching; every signed report makes the next draft better; the archive stays in-house.</p>
+      </div>
       <ul class="points">
-        <li>Search by meaning: "blood in urine" also finds reports labelled "haematuria" — a multilingual model running locally, no API key</li>
+        <li>Search by meaning: "blood in urine" also finds reports labelled "haematuria", with a multilingual model running locally and no API key</li>
         <li>Report drafts faithful to the institution's style and terminology (abdominal CT, CT urography, pelvic CT)</li>
         <li>Physician in the loop: the draft is explicitly a proposal for review, correction and signature</li>
         <li>Anamnesis summarized into 3–6 clinical bullet points; pathological findings and measurements first</li>
@@ -124,7 +128,7 @@
       </ul>
       <div class="uc-block">
         <span class="uc-label">Challenge</span>
-        <p>Patient therapy was tracked on a paper form and a ward Word document — no automatic safety
+        <p>Patient therapy was tracked on a paper form and a ward Word document: no automatic safety
           checks, hard to read, and no audit trail.</p>
       </div>
       <div class="uc-block">
@@ -132,7 +136,11 @@
         <p>The medication process was digitized from admission to discharge: a nurse photographs the
           handwritten form, AI handwriting recognition (with mandatory human confirmation of every
           field) captures the existing therapy, the physician reconciles and prescribes with a PIN
-          e-signature, and administrations are recorded at the bedside — even offline.</p>
+          e-signature, and administrations are recorded at the bedside, even offline.</p>
+      </div>
+      <div class="uc-block">
+        <span class="uc-label">Impact</span>
+        <p>Every dose, change and override is traceable to a person and a time; allergy checks run automatically; the ward keeps working when the network does not.</p>
       </div>
       <ul class="points">
         <li>Handwriting recognition with a confidence threshold and mandatory human confirmation per field; the raw result is archived for traceability</li>
@@ -152,8 +160,7 @@
       </ul>
       <div class="uc-block">
         <span class="uc-label">Challenge</span>
-        <p>The monthly physician schedule across multiple sites and duty posts — ward, outpatient
-          clinics, the catheterization lab, on-call shifts — was assembled by hand in spreadsheets:
+        <p>The monthly physician schedule across multiple sites and duty posts (ward, outpatient clinics, the catheterization lab, on-call shifts) was assembled by hand in spreadsheets:
           slow, error-prone, and with no guarantee that insurer slots and hour quotas were honoured.</p>
       </div>
       <div class="uc-block">
@@ -162,6 +169,10 @@
           hour quotas, insurer windows, travel between cities) and layered priorities. When a slot
           stays uncovered, the system explains why and proposes concrete measures; for sick leave it
           automatically ranks substitutes with justification.</p>
+      </div>
+      <div class="uc-block">
+        <span class="uc-label">Impact</span>
+        <p>A month of schedules in minutes instead of days, with insurer windows and hour quotas guaranteed by construction, and a justified substitute proposed the moment someone calls in sick.</p>
       </div>
       <ul class="points">
         <li>A physician × duty-post competency matrix (allowed / preferred / forbidden) and insurer-contracted priority windows</li>
@@ -183,14 +194,17 @@
       <div class="uc-block">
         <span class="uc-label">Challenge</span>
         <p>After a ransomware attack, a veterinary pathology institute was left with a damaged legacy
-          database of more than 51,000 examination records — and no modern system for daily work.</p>
+          database of more than 51,000 examination records, and no modern system for daily work.</p>
       </div>
       <div class="uc-block">
         <span class="uc-label">Solution</span>
         <p>The data was forensically recovered and turned into a secure, GDPR-compliant application:
           a searchable archive, structured report forms per examination type (necropsy,
-          histopathology, cytology), image management, live voice dictation and AI report drafts —
-          with inference running exclusively within the EU.</p>
+          histopathology, cytology), image management, live voice dictation and AI report drafts, with inference running exclusively within the EU.</p>
+      </div>
+      <div class="uc-block">
+        <span class="uc-label">Impact</span>
+        <p>51,000+ records back in daily use and searchable in seconds; new reports dictated and drafted instead of typed; GDPR obligations automated rather than remembered.</p>
       </div>
       <ul class="points">
         <li>Server-side search and filtering across 51,000+ records: diagnosis, findings, owner, examination type, clinician, period</li>
@@ -211,15 +225,18 @@
       <div class="uc-block">
         <span class="uc-label">Challenge</span>
         <p>A physician holding the result of a spectral biosignal measurement needs a fast,
-          transparent ML assessment and a report they can share with the patient — without
-          assembling it by hand.</p>
+          transparent ML assessment and a report they can share with the patient, without assembling it by hand.</p>
       </div>
       <div class="uc-block">
         <span class="uc-label">Solution</span>
         <p>The physician uploads the measurements, an ensemble of independent ML models votes on the
-          classification in parallel — showing confidence and each model's vote — generative AI
+          classification in parallel, showing confidence and each model’s vote; generative AI
           composes the clinical narrative, and the PDF report lands in the patient's own secure
           portal.</p>
+      </div>
+      <div class="uc-block">
+        <span class="uc-label">Impact</span>
+        <p>The physician gets a classification with confidence and per-model votes, not a black-box score; the patient gets a readable report in their portal without anyone assembling it by hand.</p>
       </div>
       <ul class="points">
         <li>An explainable ensemble instead of one black box: majority voting with a per-model breakdown and averaged probabilities</li>
@@ -234,7 +251,7 @@
 
   <section class="cta container" id="contact">
     <h2 class="cta-title">Facing a similar challenge?</h2>
-    <p class="cta-sub">Describe your workflow — we'll show you how the layers of the
+    <p class="cta-sub">Describe your workflow and we'll show you how the layers of the
       LabMed stack solve it.</p>
     <div class="cta-row">
       <a class="btn btn-primary" href="mailto:contact@daignostics.info">Request a demo</a>

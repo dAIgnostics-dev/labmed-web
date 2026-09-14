@@ -4,6 +4,21 @@
 
   document.documentElement.classList.add('js');
 
+  /* ---------------- standards chips: one-sentence disclosures ---------------- */
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip[aria-controls]'));
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var open = chip.getAttribute('aria-expanded') === 'true';
+      chips.forEach(function (c) {
+        var note = document.getElementById(c.getAttribute('aria-controls'));
+        var on = (c === chip) && !open;
+        c.setAttribute('aria-expanded', String(on));
+        c.classList.toggle('is-open', on);
+        if (note) note.hidden = !on;
+      });
+    });
+  });
+
   var IDS = ['clarity', 'inference', 'datahub', 'edge'];
   var SVG_NS = 'http://www.w3.org/2000/svg';
   var LIFT_SCREEN = 20 * Math.sin(55 * Math.PI / 180); // projected rise of translateZ(--lift) under rotateX(55deg) ≈ 16.4px
