@@ -236,7 +236,7 @@ img { max-width: 100%; height: auto; }
   height: 72px;
 }
 
-.brand { display: inline-flex; align-items: center; min-width: 0; }
+.brand { display: inline-flex; align-items: center; min-width: 0; text-decoration: none; }
 
 /* product name next to the company logo (desktop only: the narrow header has no room) */
 .brand-product { display: none; }
