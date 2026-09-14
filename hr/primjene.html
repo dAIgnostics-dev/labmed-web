@@ -40,8 +40,9 @@
 
 <header class="site-head">
   <div class="container head-row">
-    <a class="brand" href="index.html" aria-label="dAIgnostics početna">
+    <a class="brand" href="index.html" aria-label="LabMed Studio, proizvod tvrtke dAIgnostics, početna">
       <img src="../assets/daignostics-logo.png" alt="dAIgnostics" class="brand-logo" width="151" height="36">
+      <span class="brand-product">LabMed Studio</span>
     </a>
     <nav class="main-nav" aria-label="Glavna navigacija">
       <ul>
@@ -112,7 +113,7 @@
       <ul class="points">
         <li>Pretraga po značenju: „krv u mokraći” pronalazi i nalaze označene „hematurija”, a višejezični model radi lokalno, bez API ključa</li>
         <li>Nacrt nalaza vjeran stilu i terminologiji ustanove (CT abdomena, CT urografija, CT zdjelice)</li>
-        <li>Liječnik u petlji: nacrt je eksplicitno prijedlog za provjeru, korekciju i potpis</li>
+        <li>Liječnik ostaje u procesu: nacrt je isključivo prijedlog za provjeru, korekciju i potpis</li>
         <li>Sažetak anamneze u 3–6 kliničkih natuknica; patološki nalazi i mjere prikazani prvi</li>
       </ul>
       <p class="sol-note"><span class="status-chip">Pilot</span></p>
@@ -120,7 +121,7 @@
 
     <section class="sol" id="terapijska-lista" aria-labelledby="t-terapijska">
       <p class="sol-kicker">Primjena 02 · Specijalna klinika</p>
-      <h2 class="sol-title" id="t-terapijska">Digitalna terapijska lista: s papira u auditabilan zapis</h2>
+      <h2 class="sol-title" id="t-terapijska">Digitalna terapijska lista: s papira u zapis spreman za audit</h2>
       <ul class="layer-badges" aria-label="Korišteni slojevi">
         <li class="lb lb-edge"><i aria-hidden="true"></i>dAI Edge</li>
         <li class="lb lb-clarity"><i aria-hidden="true"></i>dAI Clarity</li>
@@ -142,9 +143,9 @@
       </div>
       <ul class="points">
         <li>Prepoznavanje rukopisa s pragom pouzdanosti i obveznom potvrdom čovjeka za svako polje; sirovi rezultat arhiviran radi sljedivosti</li>
-        <li>Automatska upozorenja na alergije provjerena u sučelju i na serveru, uz trajno logiran override</li>
+        <li>Automatska upozorenja na alergije provjerena u sučelju i na serveru, uz trajno zabilježeno premošćivanje upozorenja</li>
         <li>Serverski PIN e-potpis za usklađivanje, ordiniranje i prekid terapije; revizijski trag bez mogućnosti izmjene</li>
-        <li>Offline-first rad (lokalna predmemorija + sinkronizacija) i EU hosting usklađen s GDPR-om</li>
+        <li>Rad i bez mreže (lokalna predmemorija + sinkronizacija) te smještaj podataka u EU-u usklađen s GDPR-om</li>
       </ul>
       <p class="sol-note"><span class="status-chip">Demonstracijsko okruženje</span> Prikazano na fiktivnim podacima.</p>
     </section>
@@ -163,7 +164,7 @@
       </div>
       <div class="uc-block">
         <span class="uc-label">Rješenje</span>
-        <p>Optimizacijski solver generira raspored po satima uz tvrda pravila (kompetencije, fond sati,
+        <p>Optimizacijski rješavač (solver) generira raspored po satima uz tvrda pravila (kompetencije, fond sati,
           HZZO prozori, putovanje između gradova) i slojevite prioritete. Kad termin ostane nepokriven,
           sustav objašnjava zašto i predlaže konkretne mjere; kod bolovanja automatski rangira zamjene.</p>
       </div>
@@ -173,7 +174,7 @@
       </div>
       <ul class="points">
         <li>Matrica kompetencija liječnik × radilište (dozvoljeno / preferirano / zabranjeno) i HZZO ugovoreni prioritetni prozori</li>
-        <li>Dijagnostika nepokrivenih termina s ljestvicom relaksacija i konkretnim prijedlozima</li>
+        <li>Dijagnostika nepokrivenih termina s postupnim popuštanjem pravila i konkretnim prijedlozima</li>
         <li>Trenutno ponovno rješavanje objavljenog rasporeda kod izostanaka, uz verzioniranje i oznake izmjena</li>
         <li>KPI nadzorna ploča: pokrivenost bez ručne intervencije, vrijeme do potvrđene zamjene</li>
       </ul>
@@ -190,7 +191,7 @@
       </ul>
       <div class="uc-block">
         <span class="uc-label">Izazov</span>
-        <p>Zavod za veterinarsku patologiju ostao je nakon ransomware napada s oštećenom legacy bazom
+        <p>Zavod za veterinarsku patologiju ostao je nakon napada ransomwareom s oštećenom naslijeđenom bazom
           od više od 51 000 zapisa nalaza, i bez modernog sustava za svakodnevni rad.</p>
       </div>
       <div class="uc-block">
@@ -206,8 +207,8 @@
       <ul class="points">
         <li>Serverska pretraga i filtriranje 51 000+ zapisa: dijagnoza, nalaz, vlasnik, tip pretrage, liječnik, razdoblje</li>
         <li>AI-nacrt strukturiranog nalaza na hrvatskom (zaglavlje, sekcije s opisom i dijagnozom, komentar)</li>
-        <li>Živa glasovna diktacija nalaza na hrvatskom jeziku (streaming transkripcija)</li>
-        <li>Kompletan GDPR paket: pravo na brisanje (čl. 17), minimizacija podataka, automatizacija retencije</li>
+        <li>Živa glasovna diktacija nalaza na hrvatskom jeziku (transkripcija u stvarnom vremenu)</li>
+        <li>Kompletan GDPR paket: pravo na brisanje (čl. 17), minimizacija podataka, automatizirano čuvanje i brisanje podataka</li>
       </ul>
       <p class="sol-note"><span class="status-chip">Isporučeno</span> Dodatna mogućnost iste vertikale: pretraga medicinskih slika po vizualnoj sličnosti.</p>
     </section>
@@ -236,9 +237,9 @@
       </div>
       <ul class="points">
         <li>Objašnjiv ansambl umjesto jedne crne kutije: većinsko glasanje s razradom po modelu i prosječnim vjerojatnostima</li>
-        <li>Ugrađeni pacijentov portal: pacijent vidi isključivo vlastite nalaze (granularna autorizacija)</li>
+        <li>Ugrađeni pacijentov portal: pacijent vidi isključivo vlastite nalaze (precizno razgraničena prava pristupa)</li>
         <li>AI-generirani narativni izvještaj + PDF s vremenski ograničenom poveznicom i opcijom slušanja</li>
-        <li>Serverless arhitektura s upravljanjem pacijentima i otvaranjem pacijentskih računa u jednom kliku</li>
+        <li>Arhitektura bez vlastitih poslužitelja (serverless) s upravljanjem pacijentima i otvaranjem pacijentskih računa u jednom kliku</li>
       </ul>
       <p class="sol-note"><span class="status-chip">Demonstracijsko okruženje</span> Prikazano na fiktivnim podacima.</p>
     </section>

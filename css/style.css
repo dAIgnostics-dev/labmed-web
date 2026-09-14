@@ -237,6 +237,20 @@ img { max-width: 100%; height: auto; }
 }
 
 .brand { display: inline-flex; align-items: center; min-width: 0; }
+
+/* product name next to the company logo (desktop only: the narrow header has no room) */
+.brand-product { display: none; }
+@media (min-width: 900px) {
+  .brand-product {
+    display: inline-block;
+    margin-left: 14px;
+    padding-left: 14px;
+    border-left: 1px solid var(--line);
+    font: 600 15px/1.2 var(--font-ui);
+    color: var(--ink);
+    white-space: nowrap;
+  }
+}
 .brand-logo {
   height: 36px;
   width: auto;
