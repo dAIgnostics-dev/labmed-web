@@ -238,18 +238,28 @@ img { max-width: 100%; height: auto; }
 
 .brand { display: inline-flex; align-items: center; min-width: 0; text-decoration: none; }
 
-/* product name next to the company logo (desktop only: the narrow header has no room) */
+/* product wordmark next to the company logo (desktop only: the narrow header has no room).
+   --mark-h is set inline per site so the two wordmarks, which have different
+   proportions, render with the same letter height */
 .brand-product { display: none; }
 @media (min-width: 900px) {
   .brand-product {
     display: inline-block;
+    height: var(--mark-h, 28px);
+    width: auto;
     margin-left: 14px;
     padding-left: 14px;
     border-left: 1px solid var(--line);
-    font: 600 15px/1.2 var(--font-ui);
-    color: var(--ink);
-    white-space: nowrap;
+    box-sizing: content-box;
   }
+}
+
+/* hero h1 rendered as the product wordmark; --hero-mark-h set inline per site */
+.hero-title--logo img {
+  display: block;
+  height: var(--hero-mark-h, clamp(44px, 5.9vw, 72px));
+  width: auto;
+  max-width: 100%;
 }
 .brand-logo {
   height: 36px;
