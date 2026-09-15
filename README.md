@@ -26,7 +26,7 @@ switch (HR/EN pill) in the header of every page.
   breakpoints (360 px → wide desktop), `prefers-reduced-motion` support
 - `js/main.js` — interaction state machine (hover / click / touch / keyboard),
   SVG leader lines, entrance choreography, hover self-reconciliation
-- `assets/` — official dAIgnostics logo (`daignostics-logo.png`, transparent, trimmed from the 900x900 master), favicon, Adarsh Sans font, hero photo (`hero-labmed.jpg`)
+- `assets/` — official dAIgnostics logo (`daignostics-logo.png`, transparent, trimmed from the 900x900 master), favicons (`favicon.ico`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png`, cut from the product wordmark), Adarsh Sans font, hero photo (`hero-labmed.jpg`)
 
 ## The isometric stack
 
